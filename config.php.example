@@ -1,0 +1,6 @@
+<?php
+
+$couchdb_url_db = "http://localhost:5984/giilda";
+$elastic_url_db = "http://localhost:9200/giilda";
+$lock_seq_file = "/tmp/giilda.seq";
+$COMMITER = 100;
