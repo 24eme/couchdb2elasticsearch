@@ -97,7 +97,12 @@ function commitIndexer() {
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $response  = curl_exec($ch);
     $json_response = json_decode($response);
-    if ($json_response->errors) {
+    if (!isset($json_response->errors)) {
+        echo "json : no error ";
+        print_r($json_response);
+        echo "\n";
+        throw new Exception("bad response (indexer): network problem ?");
+    }elseif ($json_response->errors) {
         echo "ERROR : ";
         print_r($response); echo "\n";
     }
@@ -152,7 +157,10 @@ function deleteIndexer($change) {
     $result = curl_exec($ch);
     $json = json_decode($result);
     curl_close($ch);
-    if ($json && isset($json->hits) && isset($json->hits->hits[0]) && ($json->hits->hits[0]->_id == $change->id)) {
+    if (!$json || !isset($json->hits)) {
+        throw new Exception("bad response (delete) : network problem ?");
+    }
+    if(isset($json->hits->hits[0]) && ($json->hits->hits[0]->_id == $change->id)) {
         $elastic_buffer .= '{ "delete" : { "_type" : "'.$json->hits->hits[0]->doc->type.'", "_id" : "'.$change->id.'" } }'."\n";
     }
 }
