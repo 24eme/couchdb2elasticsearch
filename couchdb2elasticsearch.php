@@ -8,7 +8,7 @@ readLockFile();
 
 while(1) {
 
-    $url = $couchdb_url_db.'/_changes?feed=continuous&include_docs=true&timeout=30000';
+    $url = $couchdb_url_db.'/_changes?feed=continuous&include_docs=true&timeout=30000&limit='.$COMMITER;
     if (isset($last_seq) && $last_seq) {
         $url .= '&since='.$last_seq;
     }
@@ -53,6 +53,7 @@ while(1) {
         fclose($changes);
         $changes = null;
     }
+    storeSeq($last_seq);
 }
 fclose($lock);
 
@@ -84,6 +85,9 @@ function readLockFile() {
 
 function commitIndexer() {
     global $elastic_url_db, $elastic_buffer;
+    if (!strlen($elastic_buffer)) {
+        return true;
+    }
     echo "commitIndexer\n";
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $elastic_url_db."/_bulk");
