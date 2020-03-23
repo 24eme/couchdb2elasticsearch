@@ -113,6 +113,30 @@ function commitIndexer() {
 
 function updateIndexer($change) {
     echo "updateIndexer (1) : ".$change->id."\n";
+    //Not views
+    if (isset($change->doc->views)) {
+        return ;
+    }
+    unset($change->doc->_attachments);
+    if ($change->doc->type == "Facture") {
+        unset($change->doc->lignes);
+        unset($change->doc->origines);
+    }
+    if ($change->doc->type == "Generation") {
+        unset($change->doc->fichiers);
+    }
+    if ($change->doc->type == "SV12") {
+        $contrats = array();
+        foreach($change->doc->contrats as $k => $c) {
+            $contrats[] = $c;
+        }
+        $change->doc->contrats = $contrats;
+        $produits = array();
+        foreach($change->doc->totaux->produits as $k => $p) {
+            $produits[] = $p;
+        }
+        $change->doc->totaux->produits = $produits;
+    }
     if ($change->doc->type == "DRM") {
         unset($change->doc->declaration->certifications);
         unset($change->doc->favoris);
