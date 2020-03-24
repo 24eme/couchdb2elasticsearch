@@ -37,16 +37,16 @@ while(1) {
         }
 
         $last_seq = $change->seq;
-        //Suppression si le doc a été supprimé par couchdb
         if (isset($change->deleted)) {
+            //Suppression si le doc a été supprimé par couchdb
             deleteIndexer($change);
-            continue;
+        }else {
+            //Sinon insère ou met à jour le document
+            updateIndexer($change);
         }
-        //Sinon insère ou met à jour le document
-        updateIndexer($change);
 
         //Si on n'a inséré $COMMITER docs, on commit et sauve cette valeur
-        if ($cpt > $COMMITER) {
+        if (!($cpt % $COMMITER)) {
             storeSeq($last_seq);
         }
 
