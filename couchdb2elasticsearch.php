@@ -1,5 +1,6 @@
 <?php
 
+$verbose = 0;
 include("config.php");
 
 $elastic_buffer = array();
@@ -14,7 +15,7 @@ while(1) {
     }
     //Récupère les derniers changements
     $changes = fopen($url, 'r');
-    echo "$url\n";
+    if ($verbose) echo "$url\n";
 
     $cpt = 0;
     //Pour chaque changement, on récupére le document couchdb
@@ -24,7 +25,7 @@ while(1) {
         //Decode le json fourni par couchdb
         $change = json_decode($l);
         if (!$change) {
-            echo "pb json : $l\n";
+            echo "ERROR : pb json : $l\n";
             continue;
         }
 
@@ -60,8 +61,8 @@ fclose($lock);
 
 //Commit les données puis sauve
 function storeSeq($seq) {
-  echo "storeSequence (1) : $seq\n";
-  global $lock, $cpt, $lock_seq_file;
+  global $lock, $cpt, $lock_seq_file, $verbose;
+  if ($verbose) echo "storeSequence (1) : $seq ($cpt)\n";
   if (commitIndexer()) {
     fclose($lock);
     $lock = fopen($lock_seq_file, 'w+');
@@ -85,12 +86,12 @@ function readLockFile() {
 }
 
 function commitIndexer() {
-    global $elastic_url_db, $elastic_buffer;
+    global $elastic_url_db, $elastic_buffer, $verbose;
     if (!count($elastic_buffer)) {
         return true;
     }
     $data = implode("\n", $elastic_buffer);
-    echo "commitIndexer\n";
+    if ($verbose) echo "commitIndexer\n";
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $elastic_url_db."/_bulk");
     curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json','Content-Length: ' . strlen($data)));
@@ -100,8 +101,10 @@ function commitIndexer() {
     $response  = curl_exec($ch);
     $json_response = json_decode($response);
     if (!isset($json_response->errors)) {
-        echo "json : no error ";
+        echo "ERROR json : ";
         print_r($json_response);
+        echo "\nDATA :";
+        print_r($data);
         echo "\n";
         throw new Exception("bad response (indexer): network problem ?");
     }elseif ($json_response->errors) {
@@ -114,7 +117,8 @@ function commitIndexer() {
 }
 
 function updateIndexer($change) {
-    echo "updateIndexer (1) : ".$change->id."\n";
+    global $verbose;
+    if ($verbose) echo "updateIndexer (1) : ".$change->id."\n";
     //Not views
     if (isset($change->doc->views)) {
         return ;
@@ -186,8 +190,8 @@ function emit($id, $object, $type) {
 }
 
 function deleteIndexer($change) {
-    global $elastic_url_db, $elastic_buffer;
-    echo "deleteIndexer (1) : ".$change->id."\n";
+    global $elastic_url_db, $elastic_buffer, $verbose;
+    if ($verbose) echo "deleteIndexer (1) : ".$change->id."\n";
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $elastic_url_db."/_search?q=id:".$change->id);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
