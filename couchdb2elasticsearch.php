@@ -134,6 +134,12 @@ function updateIndexer($change) {
     if (isset($change->doc->views)) {
         return ;
     }
+    if ($change->doc->type == "Configuration") {
+        return ;
+    }
+    if ($change->doc->type == "Current") {
+        return ;
+    }
     unset($change->doc->_attachments);
     unset($change->doc->droits);
     if ($change->doc->type == "Facture") {
@@ -154,6 +160,48 @@ function updateIndexer($change) {
             $produits[] = $p;
         }
         $change->doc->totaux->produits = $produits;
+        $mouvements = array();
+        foreach($change->doc->mouvements as $tiers => $t_mouvements) {
+            foreach($t_mouvements as $id => $mvt) {
+                $mvt->tiers = $tiers;
+                $mvt->id = $id;
+                $mouvements[] = $mvt;
+            }
+        }
+        $change->doc->mouvements = $mouvements;
+    }
+    if ($change->doc->type == "CSVDRM") {
+        $erreurs = array();
+        foreach($change->doc->erreurs as $id => $e) {
+            $e->id = $id;
+            $erreurs[] = $e;
+        }
+        $change->doc->erreurs = $erreurs;
+    }
+    if ($change->doc->type == "Societe") {
+        $contacts = array();
+        foreach($change->doc->contacts as $id => $c) {
+            $c->id = $id;
+            $contacts[] = $c;
+        }
+        $change->doc->contacts = $contacts;
+        $etablissements = array();
+        foreach($change->doc->etablissements as $id => $e) {
+            $e->id = $id;
+            $etablissements[] = $e;
+        }
+        $change->doc->etablissements = $etablissements;
+    }
+    if ($change->doc->type == "MouvementsFacture") {
+        $mouvements = array();
+        foreach($change->doc->mouvements as $tiers => $t_mouvements) {
+            foreach($t_mouvements as $id => $mvt) {
+                $mvt->tiers = $tiers;
+                $mvt->id = $id;
+                $mouvements[] = $mvt;
+            }
+        }
+        $change->doc->mouvements = $mouvements;
     }
     if ($change->doc->type == "DRM") {
         unset($change->doc->declaration->certifications);
@@ -185,10 +233,19 @@ function updateIndexer($change) {
             $crds = array();
             foreach($change->doc->crds as $type => $t_crds) {
                 foreach($t_crds as $id => $crd) {
+                    $crd->id = $id;
                     $crds[] = $crd;
                 }
             }
             $change->doc->crds = $crds;
+        }
+        if (isset($change->doc->releve_non_apurement)) {
+            $releve_non_apurements = array();
+            foreach($change->doc->releve_non_apurement as $id => $r) {
+                    $r->id = $id;
+                    $releve_non_apurements[] = $r;
+            }
+            $change->doc->releve_non_apurement = $releve_non_apurements;
         }
     }
     emit($change->id, $change, strtoupper($change->doc->type));
