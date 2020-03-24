@@ -16,6 +16,7 @@ while(1) {
     $changes = fopen($url, 'r');
     echo "$url\n";
 
+    $cpt = 0;
     //Pour chaque changement, on récupére le document couchdb
     while($changes && ($l = fgets($changes))) {
         $cpt++;
