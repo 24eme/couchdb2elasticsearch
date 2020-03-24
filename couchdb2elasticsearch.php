@@ -2,7 +2,7 @@
 
 include("config.php");
 
-$elastic_buffer = '';
+$elastic_buffer = array();
 $cpt = 0;
 readLockFile();
 
@@ -86,15 +86,16 @@ function readLockFile() {
 
 function commitIndexer() {
     global $elastic_url_db, $elastic_buffer;
-    if (!strlen($elastic_buffer)) {
+    if (!count($elastic_buffer)) {
         return true;
     }
+    $data = implode("\n", $elastic_buffer);
     echo "commitIndexer\n";
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $elastic_url_db."/_bulk");
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json','Content-Length: ' . strlen($elastic_buffer)));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json','Content-Length: ' . strlen($data)));
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
-    curl_setopt($ch, CURLOPT_POSTFIELDS,$elastic_buffer);
+    curl_setopt($ch, CURLOPT_POSTFIELDS,$data);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $response  = curl_exec($ch);
     $json_response = json_decode($response);
@@ -108,7 +109,7 @@ function commitIndexer() {
         print_r($response); echo "\n";
     }
     curl_close($ch);
-    $elastic_buffer = '';
+    $elastic_buffer = array();
     return true;
 }
 
@@ -181,11 +182,11 @@ function emit($id, $object, $type) {
     global $elastic_buffer;
     $data_json = json_encode($object);
     $header = '{ "index" : { "_type" : "'.$type.'", "_id" : "'.$id.'" } }';
-    $elastic_buffer .= $header."\n".$data_json."\n";
+    $elastic_buffer[] = $header."\n".$data_json;
 }
 
 function deleteIndexer($change) {
-    global $elastic_url_db;
+    global $elastic_url_db, $elastic_buffer;
     echo "deleteIndexer (1) : ".$change->id."\n";
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $elastic_url_db."/_search?q=id:".$change->id);
@@ -197,6 +198,6 @@ function deleteIndexer($change) {
         throw new Exception("bad response (delete) : network problem ?");
     }
     if(isset($json->hits->hits[0]) && ($json->hits->hits[0]->_id == $change->id)) {
-        $elastic_buffer .= '{ "delete" : { "_type" : "'.$json->hits->hits[0]->doc->type.'", "_id" : "'.$change->id.'" } }'."\n";
+        $elastic_buffer[] = '{ "delete" : { "_type" : "'.$json->hits->hits[0]->doc->type.'", "_id" : "'.$change->id.'" } }'."\n";
     }
 }
