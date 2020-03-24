@@ -150,6 +150,16 @@ function updateIndexer($change) {
         foreach($change->doc->mouvements as $tiers => $t_mouvements) {
             foreach($t_mouvements as $id => $mvt) {
                 $mouvements[] = $mvt;
+                $keys = explode('/', $mvt->produit_hash);
+                $mvt->certification = $keys[3];
+                $mvt->genre = $keys[5];
+                $mvt->appellation = $keys[7];
+                $mvt->mention = $keys[9];
+                $mvt->lieu = $keys[11];
+                $mvt->couleur = $keys[13];
+                $mvt->cepage = $keys[15];
+                $mvt->id = $change->id."-".$id;
+                $mvt->date = substr($change->doc->periode, 0, 4).'-'.substr($change->doc->periode, 4, 2).'-15';
                 $drmmvt["doc"]["mouvements"] = $mvt;
                 emit($change->id."-".$id, $drmmvt, "DRMMVT");
             }
