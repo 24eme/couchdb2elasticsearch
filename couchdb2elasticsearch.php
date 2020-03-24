@@ -108,8 +108,19 @@ function commitIndexer() {
         echo "\n";
         throw new Exception("bad response (indexer): network problem ?");
     }elseif ($json_response->errors) {
-        echo "ERROR : ";
-        print_r($response); echo "\n";
+        if (count($elastic_buffer) == 1) {
+            echo "ERROR : ";
+            print_r($response);
+            echo "\nDATA :";
+            print_r($data);
+            echo "\n";
+        }else{
+            $buffers = $elastic_buffer;
+            foreach($buffers as $b) {
+                $elastic_buffer = array($b);
+                commitIndexer();
+            }
+        }
     }
     curl_close($ch);
     $elastic_buffer = array();
