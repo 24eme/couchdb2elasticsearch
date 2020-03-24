@@ -119,6 +119,7 @@ function updateIndexer($change) {
         return ;
     }
     unset($change->doc->_attachments);
+    unset($change->doc->droits);
     if ($change->doc->type == "Facture") {
         unset($change->doc->lignes);
         unset($change->doc->origines);
