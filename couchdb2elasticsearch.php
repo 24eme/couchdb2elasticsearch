@@ -344,6 +344,7 @@ function deleteIndexer($change) {
     $json = json_decode($result);
     curl_close($ch);
     if (!$json || !isset($json->hits)) {
+        print_r($json);
         throw new Exception("bad response (delete) : network problem ?");
     }
     foreach($json->hits->hits as $hit) {
