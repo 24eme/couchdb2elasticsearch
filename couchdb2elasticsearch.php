@@ -131,7 +131,13 @@ function updateIndexer($change) {
     global $verbose;
     if ($verbose) echo "updateIndexer (1) : ".$change->id."\n";
     //Not views
-    if (isset($change->doc->views)) {
+    if (preg_match('/^_/', $change->id)) {
+        return ;
+    }
+    if (!isset($change->doc->type)) {
+        echo "ERROR: no type for : ";
+        print_r($change);
+        echo "\n";
         return ;
     }
     if ($change->doc->type == "Configuration") {
