@@ -212,6 +212,16 @@ function updateIndexer($change) {
         }
         $change->doc->mouvements = $mouvements;
     }
+    if ($change->doc->type == "Vrac") {
+        $keys = explode('/', $change->doc->produit);
+        $change->doc->certification = $keys[3];
+        $change->doc->genre = $keys[5];
+        $change->doc->appellation = $keys[7];
+        $change->doc->mention = $keys[9];
+        $change->doc->lieu = $keys[11];
+        $change->doc->couleur = $keys[13];
+        $change->doc->cepage = $keys[15];
+    }
     if ($change->doc->type == "DRM") {
         unset($change->doc->declaration->certifications);
         unset($change->doc->favoris);
