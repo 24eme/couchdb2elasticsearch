@@ -260,7 +260,7 @@ function updateIndexer($change) {
                                 foreach($coul->cepages as $kcep => $cep) {
                                     $produit_hash = '/declaration/certifications/'.$kc.'/genres/'.$kg.'/appellations/'.$ka.'/mentions/'.$km.'/lieux/'.$kl.'/couleurs/'.$kcoul.'/cepages\/'.$kcep;
                                     if (!isset($cep->details)) {
-                                        print_r($change);
+                                        continue;
                                     }
                                     foreach($cep->details as $kd => $detail) {
                                         $mvt['categorie'] = 'stocks';
