@@ -326,8 +326,10 @@ function emit($id, $object, $type, $origin = null) {
     }
     if (is_array($object)) {
         $object["source"] = $origin;
+        $object["id"] = $id;
     }else{
         $object->source = $origin;
+        $object->id = $id;
     }
     $data_json = json_encode($object);
     $header = '{ "index" : { "_type" : "'.$type.'", "_id" : "'.$id.'" } }';
