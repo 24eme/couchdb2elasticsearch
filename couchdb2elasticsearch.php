@@ -319,8 +319,16 @@ function updateIndexer($change) {
     }
     emit($change->id, $change, strtoupper($change->doc->type));
 }
-function emit($id, $object, $type) {
+function emit($id, $object, $type, $origin = null) {
     global $elastic_buffer;
+    if (!$origin) {
+        $origin = $id;
+    }
+    if (is_array($object)) {
+        $object["source"] = $origin;
+    }else{
+        $object->source = $origin;
+    }
     $data_json = json_encode($object);
     $header = '{ "index" : { "_type" : "'.$type.'", "_id" : "'.$id.'" } }';
     $elastic_buffer[] = $header."\n".$data_json;
@@ -330,7 +338,7 @@ function deleteIndexer($change) {
     global $elastic_url_db, $elastic_buffer, $verbose;
     if ($verbose) echo "deleteIndexer (1) : ".$change->id."\n";
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $elastic_url_db."/_search?q=id:".$change->id);
+    curl_setopt($ch, CURLOPT_URL, $elastic_url_db."/_search?q=source:".$change->id);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $result = curl_exec($ch);
     $json = json_decode($result);
@@ -338,7 +346,10 @@ function deleteIndexer($change) {
     if (!$json || !isset($json->hits)) {
         throw new Exception("bad response (delete) : network problem ?");
     }
-    if(isset($json->hits->hits[0]) && ($json->hits->hits[0]->_id == $change->id)) {
-        $elastic_buffer[] = '{ "delete" : { "_type" : "'.$json->hits->hits[0]->doc->type.'", "_id" : "'.$change->id.'" } }'."\n";
+    foreach($json->hits->hits as $hit) {
+        if (!isset($hit->source) || ($hit->source != $change->id)) {
+            continue;
+        }
+        $elastic_buffer[] = '{ "delete" : { "_type" : "'.$hit->doc->type.'", "_id" : "'.$hit->id.'" } }'."\n";
     }
 }
