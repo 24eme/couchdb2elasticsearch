@@ -146,6 +146,9 @@ function updateIndexer($change) {
     if ($change->doc->type == "Current") {
         return ;
     }
+    if ($change->doc->type == "Comptabilite") {
+        return ;
+    }
     unset($change->doc->_attachments);
     unset($change->doc->droits);
     if ($change->doc->type == "Facture") {
