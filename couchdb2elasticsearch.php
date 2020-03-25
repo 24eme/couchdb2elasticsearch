@@ -223,7 +223,6 @@ function updateIndexer($change) {
         $change->doc->cepage = $keys[15];
     }
     if ($change->doc->type == "DRM") {
-        unset($change->doc->declaration->certifications);
         unset($change->doc->favoris);
         $mouvements = array();
         $drmmvt = array("doc" => array("type" => "DRMMVT", "region" => $change->doc->region , "campagne" => $change->doc->campagne, "type_creation"=> $change->doc->type_creation,
@@ -244,9 +243,60 @@ function updateIndexer($change) {
                 $mvt->id = $change->id."-".$id;
                 $mvt->date = substr($change->doc->periode, 0, 4).'-'.substr($change->doc->periode, 4, 2).'-15';
                 $drmmvt["doc"]["mouvements"] = $mvt;
-                emit($change->id."-".$id, $drmmvt, "DRMMVT");
+                emit($change->id."-".$id, $drmmvt, "DRMMVT", $change->id);
             }
         }
+        $mvt = array();
+        $mvt['region'] = $change->doc->region;
+        $mvt['region_destinataire'] = $change->doc->region;
+        $mvt['date'] = substr($change->doc->periode, 0, 4).'-'.substr($change->doc->periode, 4, 2).'-15';
+        $mvt['date_version'] = $change->doc->valide->date_saisie;
+        foreach($change->doc->declaration->certifications as $kc => $c) {
+            foreach($c->genres as $kg => $g) {
+                foreach($g->appellations as $ka => $a) {
+                    foreach($a->mentions as $km => $m) {
+                        foreach($m->lieux as $kl => $l) {
+                            foreach($l->couleurs as $kcoul => $coul) {
+                                foreach($coul->cepages as $kcep => $cep) {
+                                    $produit_hash = '/declaration/certifications/'.$kc.'/genres/'.$kg.'/appellations/'.$ka.'/mentions/'.$km.'/lieux/'.$kl.'/couleurs/'.$kcoul.'/cepages\/'.$kcep;
+                                    if (!isset($cep->details)) {
+                                        print_r($change);
+                                    }
+                                    foreach($cep->details as $kd => $detail) {
+                                        $mvt['categorie'] = 'stocks';
+                                        $mvt['produit_hash'] = $produit_hash;
+                                        $mvt['produit_libelle'] = $detail->produit_libelle;
+                                        $mvt['type_drm'] = 'SUSPENDU';
+                                        $mvt['type_drm_libelle'] = 'Suspendu';
+                                        $mvt['vrac_numero'] = null;
+                                        $mvt['vrac_destinataire'] = null;
+                                        $mvt['detail_identifiant'] = null;
+                                        $mvt['detail_libelle'] = null;
+                                        $mvt['certification'] = $kc;
+                                        $mvt['genre'] = $kg;
+                                        $mvt['appellation'] = $ka;
+                                        $mvt['mention'] =  $km;
+                                        $mvt['lieu'] =  $kl;
+                                        $mvt['couleur'] =  $kcoul;
+                                        $mvt['cepage'] =  $kcep;
+                                        $mvt['cvo'] = $detail->cvo->taux;
+                                        foreach(array('total', 'total_debut_mois') as $s) {
+                                            $mvt['id'] = 'DRM-'.$change->doc->identifiant.'-'.$change->doc->periode.'-'.md5($detail->produit_libelle.' '.$s);
+                                            $mvt['type_hash'] = $s;
+                                            $mvt['type_libelle'] = $s;
+                                            $mvt['volume'] = $detail->{$s};
+                                            $drmmvt["doc"]["mouvements"] = $mvt;
+                                            emit($mvt['id'], $drmmvt, "DRMMVT", $change->id);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        unset($change->doc->declaration->certifications);
         $change->doc->mouvements = $mouvements;
         if (isset($change->doc->crds)) {
             $crds = array();
