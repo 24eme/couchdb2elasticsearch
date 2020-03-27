@@ -26,6 +26,10 @@
                         "type": "string",
                         "index": "not_analyzed"
                     },
+                    "teledeclaration_email": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
                     "statut": {
                         "type": "string",
                         "index": "not_analyzed"
@@ -158,414 +162,145 @@
     },
     "DRM": {
         "properties": {
-            "id": {
-                "type": "string",
-                "index": "not_analyzed"
-            },
-            "source": {
-                "type": "string",
-                "index": "not_analyzed"
-            },
-            "seq": {
-                "type": "long"
+            "changes": {
+                "properties": {
+                    "rev": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    }
+                }
             },
             "doc": {
                 "properties": {
-                    "region": {
-                        "type": "string",
-                        "index": "not_analyzed"
+                    "_id": {
+                        "index": "not_analyzed",
+                        "type": "string"
                     },
-                    "numero_archive": {
-                        "type": "string",
-                        "index": "not_analyzed"
-                    },
-                    "editeurs": {
-                        "properties": {
-                            "compte": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "date_modification": {
-                                "format": "strict_date_optional_time||epoch_millis",
-                                "type": "date"
-                            },
-                            "nom": {"type": "string"}
-                        }
-                    },
-                    "transmission_douane": {
-                        "properties": {
-                            "coherente": {
-                                "type": "boolean"
-                            },
-                            "horodatage": {
-                                "format": "strict_date_optional_time||epoch_millis",
-                                "type": "date"
-                            },
-                            "id_declaration": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "xml": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "success": {
-                                "type": "boolean"
-                            }
-                        }
-                    },
-                    "type": {
-                        "type": "string",
-                        "index": "not_analyzed"
-                    },
-                    "type_creation": {
-                        "type": "string",
-                        "index": "not_analyzed"
-                    },
-                    "douane": {
-                        "type": "object"
-                    },
-                    "mouvements": {
-                        "properties": {
-                            "facture": {
-                                "type": "long"
-                            },
-                            "genre": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "region": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "lieu": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "vrac_destinataire": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "date": {
-                                "format": "strict_date_optional_time||epoch_millis",
-                                "type": "date"
-                            },
-                            "version": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "type_drm_libelle": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "type_libelle": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "id": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "categorie": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "type_hash": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "detail_libelle": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "appellation": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "mention": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "facturable": {
-                                "type": "long"
-                            },
-                            "date_version": {
-                                "format": "strict_date_optional_time||epoch_millis",
-                                "type": "date"
-                            },
-                            "type_drm": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "cvo": {
-                                "type": "double"
-                            },
-                            "produit_hash": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "couleur": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "vrac_numero": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "certification": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "produit_libelle": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "detail_identifiant": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "cepage": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "volume": {
-                                "type": "double"
-                            },
-                            "region_destinataire": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            }
-                        }
+                    "_rev": {
+                        "index": "not_analyzed",
+                        "type": "string"
                     },
                     "campagne": {
-                        "type": "string",
-                        "index": "not_analyzed"
+                        "index": "not_analyzed",
+                        "type": "string"
                     },
-                    "version": {
-                        "type": "string",
-                        "index": "not_analyzed"
+                    "commentaire": {
+                        "index": "not_analyzed",
+                        "type": "string"
                     },
-                    "_id": {
-                        "type": "string",
-                        "index": "not_analyzed"
-                    },
-                    "periode": {
-                        "type": "string",
-                        "index": "not_analyzed"
-                    },
-                    "societe": {
+                    "controles": {
                         "properties": {
-                            "paiement_douane_frequence": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "code_postal": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "fax": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "adresse": {
-                                "type": "string"
-                            },
-                            "email": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "paiement_douane_moyen": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "commune": {
-                                "type": "string"
-                            },
-                            "raison_sociale": {
-                                "type": "string"
-                            },
-                            "telephone": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "siret": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            }
-                        }
-                    },
-                    "documents_annexes": {
-                        "properties": {
-                            "DSADSAC": {
+                            "erreur": {
                                 "properties": {
+                                    "messages": {
+                                        "type": "string"
+                                    },
                                     "nb": {
-                                        "type": "string",
-                                        "index": "not_analyzed"
-                                    },
-                                    "fin": {
-                                        "type": "string",
-                                        "index": "not_analyzed"
-                                    },
-                                    "debut": {
-                                        "type": "string",
-                                        "index": "not_analyzed"
+                                        "type": "long"
                                     }
                                 }
-                            },
-                            "DAADAC": {
-                                "properties": {
-                                    "nb": {
-                                        "type": "string",
-                                        "index": "not_analyzed"
-                                    },
-                                    "fin": {
-                                        "type": "string",
-                                        "index": "not_analyzed"
-                                    },
-                                    "debut": {
-                                        "type": "string",
-                                        "index": "not_analyzed"
-                                    }
-                                }
-                            },
-                            "EMPREINTE": {
-                                "type": "object"
                             }
                         }
                     },
                     "crds": {
                         "properties": {
-                            "id": {
-                                "type": "string",
-                                "index": "not_analyzed"
+                            "centilitrage": {
+                                "type": "double"
                             },
-                            "genre": {
-                                "type": "string",
-                                "index": "not_analyzed"
+                            "couleur": {
+                                "index": "not_analyzed",
+                                "type": "string"
                             },
-                            "stock_debut": {
-                                "type": "long"
+                            "detail_libelle": {
+                                "index": "not_analyzed",
+                                "type": "string"
                             },
-                            "sorties_manquants": {
+                            "entrees_achats": {
                                 "type": "long"
                             },
                             "entrees_excedents": {
                                 "type": "long"
                             },
-                            "centilitrage": {
-                                "type": "double"
-                            },
-                            "entrees_achats": {
+                            "entrees_retours": {
                                 "type": "long"
                             },
-                            "couleur": {
-                                "type": "string",
-                                "index": "not_analyzed"
+                            "genre": {
+                                "index": "not_analyzed",
+                                "type": "string"
                             },
-                            "sorties_utilisations": {
-                                "type": "long"
-                            },
-                            "detail_libelle": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "stock_fin": {
-                                "type": "long"
+                            "id": {
+                                "index": "not_analyzed",
+                                "type": "string"
                             },
                             "sorties_destructions": {
                                 "type": "long"
                             },
-                            "entrees_retours": {
+                            "sorties_manquants": {
+                                "type": "long"
+                            },
+                            "sorties_utilisations": {
+                                "type": "long"
+                            },
+                            "stock_debut": {
+                                "type": "long"
+                            },
+                            "stock_fin": {
                                 "type": "long"
                             }
                         }
                     },
-                    "valide": {
+                    "declarant": {
                         "properties": {
-                            "date_signee": {
-                                "format": "strict_date_optional_time||epoch_millis",
-                                "type": "date"
+                            "adresse": {
+                                "type": "string"
                             },
-                            "identifiant": {
-                                "type": "string",
-                                "index": "not_analyzed"
+                            "adresse_compta": {
+                                "type": "string"
                             },
-                            "date_saisie": {
-                                "format": "strict_date_optional_time||epoch_millis",
-                                "type": "date"
-                            }
-                        }
-                    },
-                    "releve_non_apurement": {
-                        "properties": {
-                            "id": {
-                                "type": "string",
-                                "index": "not_analyzed"
+                            "caution": {
+                                "index": "not_analyzed",
+                                "type": "string"
                             },
-                            "numero_document": {
-                                "type": "string",
-                                "index": "not_analyzed"
+                            "code_postal": {
+                                "index": "not_analyzed",
+                                "type": "string"
                             },
-                            "date_emission": {
-                                "type": "string",
-                                "index": "not_analyzed"
+                            "commune": {
+                                "type": "string"
                             },
-                            "numero_accise": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            }
-                        }
-                    },
-                    "declaration": {
-                        "properties": {
-                            "total": {
-                                "type": "long"
+                            "cvi": {
+                                "index": "not_analyzed",
+                                "type": "string"
                             },
-                            "total_recolte": {
-                                "type": "long"
+                            "famille": {
+                                "index": "not_analyzed",
+                                "type": "string"
                             },
-                            "total_entrees_revendique": {
-                                "type": "long"
+                            "no_accises": {
+                                "index": "not_analyzed",
+                                "type": "string"
                             },
-                            "total_entrees": {
-                                "type": "long"
+                            "nom": {
+                                "type": "string"
                             },
-                            "total_revendique": {
-                                "type": "long"
+                            "raison_sociale": {
+                                "type": "string"
                             },
-                            "total_sorties_revendique": {
-                                "type": "long"
-                            },
-                            "total_sorties": {
-                                "type": "long"
-                            },
-                            "total_facturable": {
-                                "type": "long"
-                            },
-                            "total_debut_mois": {
-                                "type": "long"
+                            "region": {
+                                "index": "not_analyzed",
+                                "type": "string"
                             }
                         }
                     },
                     "declaratif": {
                         "properties": {
-                            "statistiques": {
-                                "properties": {
-                                    "jus": {
-                                        "type": "long"
-                                    },
-                                    "mcr": {
-                                        "type": "long"
-                                    },
-                                    "vinaigre": {
-                                        "type": "long"
-                                    }
-                                }
+                            "caution": {
+                                "type": "object"
                             },
                             "daa": {
                                 "type": "object"
                             },
-                            "caution": {
+                            "dsa": {
                                 "type": "object"
                             },
                             "paiement": {
@@ -578,79 +313,407 @@
                                     }
                                 }
                             },
-                            "dsa": {
-                                "type": "object"
+                            "statistiques": {
+                                "properties": {
+                                    "jus": {
+                                        "type": "long"
+                                    },
+                                    "mcr": {
+                                        "type": "long"
+                                    },
+                                    "vinaigre": {
+                                        "type": "long"
+                                    }
+                                }
                             }
                         }
                     },
-                    "declarant": {
+                    "declaration": {
                         "properties": {
+                            "total": {
+                                "type": "long"
+                            },
+                            "total_debut_mois": {
+                                "type": "long"
+                            },
+                            "total_entrees": {
+                                "type": "long"
+                            },
+                            "total_entrees_revendique": {
+                                "type": "long"
+                            },
+                            "total_facturable": {
+                                "type": "long"
+                            },
+                            "total_recolte": {
+                                "type": "long"
+                            },
+                            "total_revendique": {
+                                "type": "long"
+                            },
+                            "total_sorties": {
+                                "type": "long"
+                            },
+                            "total_sorties_revendique": {
+                                "type": "long"
+                            }
+                        }
+                    },
+                    "documents_annexes": {
+                        "properties": {
+                            "DAADAC": {
+                                "properties": {
+                                    "debut": {
+                                        "index": "not_analyzed",
+                                        "type": "string"
+                                    },
+                                    "fin": {
+                                        "index": "not_analyzed",
+                                        "type": "string"
+                                    },
+                                    "nb": {
+                                        "index": "not_analyzed",
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "DAE": {
+                                "properties": {
+                                    "debut": {
+                                        "type": "string",
+                                        "index": "not_analyzed"
+                                    },
+                                    "fin": {
+                                        "type": "string",
+                                        "index": "not_analyzed"
+                                    }
+                                }
+                            },
+                            "DSADSAC": {
+                                "properties": {
+                                    "debut": {
+                                        "index": "not_analyzed",
+                                        "type": "string"
+                                    },
+                                    "fin": {
+                                        "index": "not_analyzed",
+                                        "type": "string"
+                                    },
+                                    "nb": {
+                                        "index": "not_analyzed",
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "EMPREINTE": {
+                                "properties": {
+                                    "debut": {
+                                        "type": "string",
+                                        "index": "not_analyzed"
+                                    },
+                                    "fin": {
+                                        "type": "string",
+                                        "index": "not_analyzed"
+                                    },
+                                    "nb": {
+                                        "type": "string",
+                                        "index": "not_analyzed"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "douane": {
+                        "type": "object"
+                    },
+                    "editeurs": {
+                        "properties": {
+                            "compte": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "date_modification": {
+                                "format": "strict_date_optional_time||epoch_millis",
+                                "type": "date"
+                            },
+                            "nom": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "etape": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "identifiant": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "interpros": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "mouvements": {
+                        "properties": {
+                            "appellation": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "categorie": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "cepage": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "certification": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "couleur": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "cvo": {
+                                "type": "double"
+                            },
+                            "date": {
+                                "format": "strict_date_optional_time||epoch_millis",
+                                "type": "date"
+                            },
+                            "date_version": {
+                                "format": "strict_date_optional_time||epoch_millis",
+                                "type": "date"
+                            },
+                            "detail_identifiant": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "detail_libelle": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "facturable": {
+                                "type": "long"
+                            },
+                            "facture": {
+                                "type": "long"
+                            },
+                            "genre": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "id": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "lieu": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "mention": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "produit_hash": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "produit_libelle": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
                             "region": {
-                                "type": "string",
-                                "index": "not_analyzed"
+                                "index": "not_analyzed",
+                                "type": "string"
                             },
-                            "code_postal": {
-                                "type": "string",
-                                "index": "not_analyzed"
+                            "region_destinataire": {
+                                "index": "not_analyzed",
+                                "type": "string"
                             },
+                            "type_drm": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "type_drm_libelle": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "type_hash": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "type_libelle": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "version": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "volume": {
+                                "type": "double"
+                            },
+                            "vrac_destinataire": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "vrac_numero": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "numero_archive": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "observations": {
+                        "type": "string"
+                    },
+                    "periode": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "precedente": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "region": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "releve_non_apurement": {
+                        "properties": {
+                            "date_emission": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "id": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "numero_accise": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "numero_document": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "societe": {
+                        "properties": {
                             "adresse": {
                                 "type": "string"
                             },
-                            "no_accises": {
-                                "type": "string",
-                                "index": "not_analyzed"
+                            "code_postal": {
+                                "index": "not_analyzed",
+                                "type": "string"
                             },
                             "commune": {
                                 "type": "string"
                             },
-                            "raison_sociale": {"type": "string"},
-                            "famille": {
-                                "type": "string",
-                                "index": "not_analyzed"
+                            "email": {
+                                "index": "not_analyzed",
+                                "type": "string"
                             },
-                            "nom": {"type": "string"},
-                            "cvi": {
-                                "type": "string",
-                                "index": "not_analyzed"
+                            "fax": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "paiement_douane_frequence": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "paiement_douane_moyen": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "raison_sociale": {
+                                "type": "string"
+                            },
+                            "siret": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "telephone": {
+                                "index": "not_analyzed",
+                                "type": "string"
                             }
                         }
-                    },
-                    "_rev": {
-                        "type": "string",
-                        "index": "not_analyzed"
-                    },
-                    "etape": {
-                        "type": "string",
-                        "index": "not_analyzed"
                     },
                     "teledeclare": {
                         "type": "boolean"
                     },
-                    "interpros": {
-                        "type": "string",
-                        "index": "not_analyzed"
+                    "transmission_douane": {
+                        "properties": {
+                            "coherente": {
+                                "type": "boolean"
+                            },
+                            "diff": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "horodatage": {
+                                "format": "strict_date_optional_time||epoch_millis",
+                                "type": "date"
+                            },
+                            "id_declaration": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "success": {
+                                "type": "boolean"
+                            },
+                            "xml": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        }
                     },
-                    "precedente": {
-                        "type": "string",
-                        "index": "not_analyzed"
+                    "type": {
+                        "index": "not_analyzed",
+                        "type": "string"
                     },
-                    "identifiant": {
-                        "type": "string",
-                        "index": "not_analyzed"
+                    "type_creation": {
+                        "index": "not_analyzed",
+                        "type": "string"
                     },
-                    "commentaire": {
-                        "type": "string",
-                        "index": "not_analyzed"
+                    "valide": {
+                        "properties": {
+                            "date_saisie": {
+                                "format": "strict_date_optional_time||epoch_millis",
+                                "type": "date"
+                            },
+                            "date_signee": {
+                                "format": "strict_date_optional_time||epoch_millis",
+                                "type": "date"
+                            },
+                            "identifiant": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "version": {
+                        "index": "not_analyzed",
+                        "type": "string"
                     }
                 }
             },
-            "changes": {
-                "properties": {
-                    "rev": {
-                        "type": "string",
-                        "index": "not_analyzed"
-                    }
-                }
+            "id": {
+                "index": "not_analyzed",
+                "type": "string"
+            },
+            "seq": {
+                "type": "long"
+            },
+            "source": {
+                "index": "not_analyzed",
+                "type": "string"
             }
         }
     },
@@ -706,6 +769,10 @@
                     },
                     "nb_documents": {
                         "type": "long"
+                    },
+                    "message": {
+                        "type": "string",
+                        "index": "not_analyzed"
                     },
                     "documents": {
                         "type": "string",
@@ -895,6 +962,10 @@
                             },
                             "adresse": {"type": "string"},
                             "email": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "service_facturation": {
                                 "type": "string",
                                 "index": "not_analyzed"
                             },
@@ -1389,6 +1460,10 @@
                     "commentaire": {
                         "type": "string",
                         "index": "not_analyzed"
+                    },
+                    "carte_pro": {
+                        "type": "string",
+                        "index": "not_analyzed"
                     }
                 }
             },
@@ -1701,567 +1776,788 @@
     },
     "DRMMVT": {
         "properties": {
-            "id": {
-                "type": "string",
-                "index": "not_analyzed"
-            },
-            "source": {
-                "type": "string",
-                "index": "not_analyzed"
-            },
             "doc": {
                 "properties": {
-                    "region": {
-                        "type": "string",
-                        "index": "not_analyzed"
+                    "campagne": {
+                        "index": "not_analyzed",
+                        "type": "string"
                     },
-                    "numero_archive": {
-                        "type": "string",
-                        "index": "not_analyzed"
-                    },
-                    "teledeclare": {
-                        "type": "boolean"
-                    },
-                    "periode": {
-                        "type": "string",
-                        "index": "not_analyzed"
-                    },
-                    "type": {
-                        "type": "string",
-                        "index": "not_analyzed"
-                    },
-                    "identifiant": {
-                        "type": "string",
-                        "index": "not_analyzed"
+                    "declarant": {
+                        "properties": {
+                            "adresse": {
+                                "type": "string"
+                            },
+                            "adresse_compta": {
+                                "type": "string"
+                            },
+                            "caution": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "code_postal": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "commune": {
+                                "type": "string"
+                            },
+                            "cvi": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "famille": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "no_accises": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "nom": {
+                                "type": "string"
+                            },
+                            "raison_sociale": {
+                                "type": "string"
+                            },
+                            "region": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        }
                     },
                     "drmid": {
-                        "type": "string",
-                        "index": "not_analyzed"
+                        "index": "not_analyzed",
+                        "type": "string"
                     },
-                    "type_creation": {
-                        "type": "string",
-                        "index": "not_analyzed"
+                    "identifiant": {
+                        "index": "not_analyzed",
+                        "type": "string"
                     },
                     "mouvements": {
                         "properties": {
-                            "facture": {
-                                "type": "long"
+                            "appellation": {
+                                "index": "not_analyzed",
+                                "type": "string"
                             },
-                            "genre": {
-                                "type": "string",
-                                "index": "not_analyzed"
+                            "categorie": {
+                                "index": "not_analyzed",
+                                "type": "string"
                             },
-                            "region": {
-                                "type": "string",
-                                "index": "not_analyzed"
+                            "cepage": {
+                                "index": "not_analyzed",
+                                "type": "string"
                             },
-                            "lieu": {
-                                "type": "string",
-                                "index": "not_analyzed"
+                            "certification": {
+                                "index": "not_analyzed",
+                                "type": "string"
                             },
-                            "vrac_destinataire": {
-                                "type": "string",
-                                "index": "not_analyzed"
+                            "couleur": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "cvo": {
+                                "type": "double"
                             },
                             "date": {
                                 "format": "strict_date_optional_time||epoch_millis",
                                 "type": "date"
                             },
-                            "version": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "type_drm_libelle": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "type_libelle": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "id": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "categorie": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "type_hash": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "detail_libelle": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "appellation": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "mention": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "facturable": {
-                                "type": "long"
-                            },
                             "date_version": {
                                 "format": "strict_date_optional_time||epoch_millis",
                                 "type": "date"
                             },
-                            "type_drm": {
-                                "type": "string",
-                                "index": "not_analyzed"
+                            "detail_identifiant": {
+                                "index": "not_analyzed",
+                                "type": "string"
                             },
-                            "cvo": {
-                                "type": "double"
+                            "detail_libelle": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "facturable": {
+                                "type": "long"
+                            },
+                            "facture": {
+                                "type": "long"
+                            },
+                            "genre": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "id": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "lieu": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "mention": {
+                                "index": "not_analyzed",
+                                "type": "string"
                             },
                             "produit_hash": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "couleur": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "vrac_numero": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "certification": {
-                                "type": "string",
-                                "index": "not_analyzed"
+                                "index": "not_analyzed",
+                                "type": "string"
                             },
                             "produit_libelle": {
-                                "type": "string",
-                                "index": "not_analyzed"
+                                "index": "not_analyzed",
+                                "type": "string"
                             },
-                            "detail_identifiant": {
-                                "type": "string",
-                                "index": "not_analyzed"
+                            "region": {
+                                "index": "not_analyzed",
+                                "type": "string"
                             },
-                            "cepage": {
-                                "type": "string",
-                                "index": "not_analyzed"
+                            "region_destinataire": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "type_drm": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "type_drm_libelle": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "type_hash": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "type_libelle": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "version": {
+                                "index": "not_analyzed",
+                                "type": "string"
                             },
                             "volume": {
                                 "type": "double"
                             },
-                            "region_destinataire": {
-                                "type": "string",
-                                "index": "not_analyzed"
+                            "vrac_destinataire": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "vrac_numero": {
+                                "index": "not_analyzed",
+                                "type": "string"
                             }
                         }
                     },
-                    "declarant": {
-                        "properties": {
-                            "region": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "code_postal": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "adresse": {"type": "string"},
-                            "no_accises": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "commune": {"type": "string"},
-                            "raison_sociale": {"type": "string"},
-                            "famille": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "nom": {"type": "string"},
-                            "cvi": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            }
-                        }
+                    "numero_archive": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "periode": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "region": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "teledeclare": {
+                        "type": "boolean"
+                    },
+                    "type": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type_creation": {
+                        "index": "not_analyzed",
+                        "type": "string"
                     },
                     "valide": {
                         "properties": {
+                            "date_saisie": {
+                                "format": "strict_date_optional_time||epoch_millis",
+                                "type": "date"
+                            },
                             "date_signee": {
                                 "format": "strict_date_optional_time||epoch_millis",
                                 "type": "date"
                             },
                             "identifiant": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "date_saisie": {
-                                "format": "strict_date_optional_time||epoch_millis",
-                                "type": "date"
+                                "index": "not_analyzed",
+                                "type": "string"
                             }
                         }
                     },
-                    "campagne": {
-                        "type": "string",
-                        "index": "not_analyzed"
-                    },
                     "version": {
-                        "type": "string",
-                        "index": "not_analyzed"
+                        "index": "not_analyzed",
+                        "type": "string"
                     }
                 }
+            },
+            "id": {
+                "index": "not_analyzed",
+                "type": "string"
+            },
+            "source": {
+                "index": "not_analyzed",
+                "type": "string"
             }
         }
     },
     "VRAC": {
         "properties": {
-            "id": {
-                "type": "string",
-                "index": "not_analyzed"
-            },
-            "source": {
-                "type": "string",
-                "index": "not_analyzed"
-            },
-            "seq": {
-                "type": "long"
+            "changes": {
+                "properties": {
+                    "rev": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    }
+                }
             },
             "doc": {
                 "properties": {
-                    "genre": {
-                        "type": "string",
-                        "index": "not_analyzed"
+                    "_id": {
+                        "index": "not_analyzed",
+                        "type": "string"
                     },
-                    "numero_archive": {
-                        "type": "string",
-                        "index": "not_analyzed"
+                    "_rev": {
+                        "index": "not_analyzed",
+                        "type": "string"
                     },
-                    "cvo_repartition": {
-                        "type": "string",
-                        "index": "not_analyzed"
+                    "acheteur": {
+                        "properties": {
+                            "adresse": {
+                                "type": "string"
+                            },
+                            "code_postal": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "commune": {
+                                "type": "string"
+                            },
+                            "cvi": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "famille": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "no_accises": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "no_tva_intracomm": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "nom": {
+                                "type": "string"
+                            },
+                            "raison_sociale": {
+                                "type": "string"
+                            },
+                            "region": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "siret": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        }
                     },
-                    "prix_initial_total": {
+                    "acheteur_identifiant": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "acompte": {
                         "type": "long"
                     },
-                    "vendeur_tva": {
-                        "type": "long"
+                    "appellation": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "autorisation_nom_producteur": {
+                        "type": "boolean"
+                    },
+                    "autorisation_nom_vin": {
+                        "type": "boolean"
                     },
                     "bouteilles_contenance_libelle": {
-                        "type": "string",
-                        "index": "not_analyzed"
+                        "index": "not_analyzed",
+                        "type": "string"
                     },
-                    "vendeur_identifiant": {
-                        "type": "string",
-                        "index": "not_analyzed"
+                    "bouteilles_contenance_volume": {
+                        "type": "double"
                     },
-                    "type": {
-                        "type": "string",
-                        "index": "not_analyzed"
-                    },
-                    "vendeur": {
-                        "properties": {
-                            "region": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "code_postal": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "adresse": {"type": "string"},
-                            "no_accises": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "commune": {"type": "string"},
-                            "no_tva_intracomm": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "raison_sociale": {"type": "string"},
-                            "famille": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "siret": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "nom": {"type": "string"},
-                            "cvi": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            }
-                        }
-                    },
-                    "versement_fa": {
-                        "type": "string",
-                        "index": "not_analyzed"
-                    },
-                    "prix_initial_unitaire": {
+                    "cahier_charge": {
                         "type": "long"
                     },
-                    "enlevement_date": {
-                        "format": "strict_date_optional_time||epoch_millis",
-                        "type": "date"
+                    "campagne": {
+                        "index": "not_analyzed",
+                        "type": "string"
                     },
-                    "prix_total": {
+                    "campagne_archive": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "categorie_vin": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "cepage": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "cepage_85_15": {
+                        "type": "boolean"
+                    },
+                    "cepage_libelle": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "certification": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "clause_reserve_propriete": {
+                        "type": "boolean"
+                    },
+                    "commentaire": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "conditionnement_crd": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "conditions_particulieres": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "couleur": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "courtage_repartition": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "courtage_taux": {
                         "type": "long"
                     },
-                    "numero_contrat": {
-                        "type": "string",
-                        "index": "not_analyzed"
+                    "createur_identifiant": {
+                        "index": "not_analyzed",
+                        "type": "string"
                     },
-                    "representant": {
-                        "properties": {
-                            "region": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "code_postal": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "adresse": {"type": "string"},
-                            "no_accises": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "commune": {"type": "string"},
-                            "no_tva_intracomm": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "raison_sociale": {"type": "string"},
-                            "famille": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "siret": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "nom": {"type": "string"},
-                            "cvi": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            }
-                        }
+                    "cvo_nature": {
+                        "index": "not_analyzed",
+                        "type": "string"
                     },
-                    "date_visa": {
-                        "format": "strict_date_optional_time||epoch_millis",
-                        "type": "date"
-                    },
-                    "valide": {
-                        "properties": {
-                            "statut": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "date_saisie": {
-                                "format": "strict_date_optional_time||epoch_millis",
-                                "type": "date"
-                            }
-                        }
-                    },
-                    "produit": {
-                        "type": "string",
-                        "index": "not_analyzed"
-                    },
-                    "volume_initial": {
-                        "type": "long"
+                    "cvo_repartition": {
+                        "index": "not_analyzed",
+                        "type": "string"
                     },
                     "date_campagne": {
                         "format": "strict_date_optional_time||epoch_millis",
                         "type": "date"
                     },
-                    "couleur": {
-                        "type": "string",
-                        "index": "not_analyzed"
+                    "date_debut_retiraison": {
+                        "format": "strict_date_optional_time||epoch_millis",
+                        "type": "date"
                     },
-                    "label": {
-                        "type": "object"
-                    },
-                    "_rev": {
-                        "type": "string",
-                        "index": "not_analyzed"
-                    },
-                    "mandataire": {
-                        "type": "object"
-                    },
-                    "produit_libelle": {
-                        "type": "string",
-                        "index": "not_analyzed"
-                    },
-                    "etape": {
-                        "type": "string",
-                        "index": "not_analyzed"
-                    },
-                    "interne": {
-                        "type": "boolean"
-                    },
-                    "millesime_85_15": {
-                        "type": "boolean"
-                    },
-                    "volume_propose": {
-                        "type": "double"
-                    },
-                    "volume_enleve": {
-                        "type": "double"
-                    },
-                    "lieu": {
-                        "type": "string",
-                        "index": "not_analyzed"
-                    },
-                    "acheteur": {
-                        "properties": {
-                            "region": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "code_postal": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "adresse": {"type": "string"},
-                            "no_accises": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "commune": {"type": "string"},
-                            "no_tva_intracomm": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "raison_sociale": {"type": "string"},
-                            "famille": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "siret": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "nom": {"type": "string"},
-                            "cvi": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            }
-                        }
-                    },
-                    "type_transaction": {
-                        "type": "string",
-                        "index": "not_analyzed"
-                    },
-                    "prix_unitaire_hl": {
-                        "type": "long"
-                    },
-                    "campagne": {
-                        "type": "string",
-                        "index": "not_analyzed"
+                    "date_limite_retiraison": {
+                        "format": "strict_date_optional_time||epoch_millis",
+                        "type": "date"
                     },
                     "date_signature": {
                         "format": "strict_date_optional_time||epoch_millis",
                         "type": "date"
                     },
-                    "_id": {
-                        "type": "string",
-                        "index": "not_analyzed"
+                    "date_visa": {
+                        "format": "strict_date_optional_time||epoch_millis",
+                        "type": "date"
                     },
-                    "prix_unitaire": {
+                    "degre": {
+                        "type": "double"
+                    },
+                    "delai_paiement": {
+                        "type": "string"
+                    },
+                    "delai_paiement_libelle": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "domaine": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "embouteillage": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "enlevement_date": {
+                        "format": "strict_date_optional_time||epoch_millis",
+                        "type": "date"
+                    },
+                    "etape": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "genre": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "interlocuteur_commercial": {
+                        "type": "object"
+                    },
+                    "interne": {
+                        "type": "boolean"
+                    },
+                    "jus_quantite": {
+                        "type": "double"
+                    },
+                    "label": {
+                        "properties": {
+                            "agriculture_biologique": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "lieu": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "logement": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "lot": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "mandataire": {
+                        "properties": {
+                            "adresse": {
+                                "type": "string"
+                            },
+                            "carte_pro": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "code_postal": {
+                                "type": "string"
+                            },
+                            "commune": {
+                                "type": "string"
+                            },
+                            "nom": {
+                                "type": "string"
+                            },
+                            "raison_sociale": {
+                                "type": "string"
+                            },
+                            "siret": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "mandataire_exist": {
+                        "type": "boolean"
+                    },
+                    "mandataire_identifiant": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "mention": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "millesime": {
+                        "type": "long"
+                    },
+                    "millesime_85_15": {
+                        "type": "boolean"
+                    },
+                    "moyen_paiement": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "moyen_paiement_libelle": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "numero_archive": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "numero_contrat": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "preparation_vin": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "prix_initial_total": {
+                        "type": "long"
+                    },
+                    "prix_initial_unitaire": {
                         "type": "long"
                     },
                     "prix_initial_unitaire_hl": {
                         "type": "long"
                     },
-                    "appellation": {
-                        "type": "string",
-                        "index": "not_analyzed"
-                    },
-                    "mention": {
-                        "type": "string",
-                        "index": "not_analyzed"
-                    },
-                    "acheteur_identifiant": {
-                        "type": "string",
-                        "index": "not_analyzed"
-                    },
-                    "cepage_85_15": {
-                        "type": "boolean"
-                    },
-                    "millesime": {
+                    "prix_total": {
                         "type": "long"
                     },
-                    "bouteilles_contenance_volume": {
+                    "prix_unitaire": {
+                        "type": "long"
+                    },
+                    "prix_unitaire_hl": {
+                        "type": "long"
+                    },
+                    "produit": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "produit_libelle": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "raisin_quantite": {
+                        "type": "long"
+                    },
+                    "representant": {
+                        "properties": {
+                            "adresse": {
+                                "type": "string"
+                            },
+                            "code_postal": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "commune": {
+                                "type": "string"
+                            },
+                            "cvi": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "famille": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "no_accises": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "no_tva_intracomm": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "nom": {
+                                "type": "string"
+                            },
+                            "raison_sociale": {
+                                "type": "string"
+                            },
+                            "region": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "siret": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "representant_identifiant": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "responsable": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "surface": {
                         "type": "double"
                     },
-                    "jus_quantite": {
-                        "type": "double"
+                    "taux_courtage": {
+                        "type": "long"
                     },
-                    "categorie_vin": {
-                        "type": "string",
-                        "index": "not_analyzed"
-                    },
-                    "mandataire_exist": {
+                    "teledeclare": {
                         "type": "boolean"
                     },
-                    "certification": {
-                        "type": "string",
-                        "index": "not_analyzed"
+                    "tva": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type_transaction": {
+                        "index": "not_analyzed",
+                        "type": "string"
                     },
                     "unites": {
                         "properties": {
-                            "prix_initial_unitaire": {
-                                "properties": {
-                                    "EURO_HECTOLITRE": {
-                                        "type": "string",
-                                        "index": "not_analyzed"
-                                    }
-                                }
-                            },
-                            "surface": {
-                                "type": "object"
-                            },
-                            "volume_initial": {
-                                "properties": {
-                                    "HECTOLITRE": {
-                                        "type": "string",
-                                        "index": "not_analyzed"
-                                    }
-                                }
-                            },
                             "jus_quantite": {
                                 "properties": {
                                     "HECTOLITRE": {
-                                        "type": "string",
-                                        "index": "not_analyzed"
+                                        "index": "not_analyzed",
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "prix_initial_unitaire": {
+                                "properties": {
+                                    "EURO_HECTOLITRE": {
+                                        "index": "not_analyzed",
+                                        "type": "string"
+                                    },
+                                    "EURO_KILOGRAMME": {
+                                        "index": "not_analyzed",
+                                        "type": "string"
+                                    },
+                                    "EURO_TONNEAU": {
+                                        "index": "not_analyzed",
+                                        "type": "string"
                                     }
                                 }
                             },
                             "raisin_quantite": {
-                                "type": "object"
+                                "properties": {
+                                    "KILOGRAMME": {
+                                        "index": "not_analyzed",
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "surface": {
+                                "properties": {
+                                    "HECTARE": {
+                                        "index": "not_analyzed",
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "volume_initial": {
+                                "properties": {
+                                    "HECTOLITRE": {
+                                        "index": "not_analyzed",
+                                        "type": "string"
+                                    },
+                                    "KILOGRAMME": {
+                                        "index": "not_analyzed",
+                                        "type": "string"
+                                    }
+                                }
                             }
                         }
                     },
-                    "cepage": {
-                        "type": "string",
-                        "index": "not_analyzed"
+                    "valide": {
+                        "properties": {
+                            "date_saisie": {
+                                "format": "strict_date_optional_time||epoch_millis",
+                                "type": "date"
+                            },
+                            "date_signature_acheteur": {
+                                "format": "strict_date_optional_time||epoch_millis",
+                                "type": "date"
+                            },
+                            "date_signature_courtier": {
+                                "format": "strict_date_optional_time||epoch_millis",
+                                "type": "date"
+                            },
+                            "date_signature_vendeur": {
+                                "format": "strict_date_optional_time||epoch_millis",
+                                "type": "date"
+                            },
+                            "statut": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        }
                     },
-                    "representant_identifiant": {
-                        "type": "string",
-                        "index": "not_analyzed"
+                    "vendeur": {
+                        "properties": {
+                            "adresse": {
+                                "type": "string"
+                            },
+                            "code_postal": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "commune": {
+                                "type": "string"
+                            },
+                            "cvi": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "famille": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "no_accises": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "no_tva_intracomm": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "nom": {
+                                "type": "string"
+                            },
+                            "raison_sociale": {
+                                "type": "string"
+                            },
+                            "region": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "siret": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        }
                     },
-                    "interlocuteur_commercial": {
-                        "type": "object"
+                    "vendeur_identifiant": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "vendeur_tva": {
+                        "type": "long"
+                    },
+                    "versement_fa": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "volume_enleve": {
+                        "type": "double"
+                    },
+                    "volume_initial": {
+                        "type": "long"
+                    },
+                    "volume_propose": {
+                        "type": "double"
                     }
                 }
             },
-            "changes": {
-                "properties": {
-                    "rev": {
-                        "type": "string",
-                        "index": "not_analyzed"
-                    }
-                }
+            "id": {
+                "index": "not_analyzed",
+                "type": "string"
+            },
+            "seq": {
+                "type": "long"
+            },
+            "source": {
+                "index": "not_analyzed",
+                "type": "string"
             }
         }
-    }
-  }
+    }  }
 }
