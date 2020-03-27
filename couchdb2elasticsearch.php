@@ -115,6 +115,7 @@ function commitIndexer() {
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $response  = curl_exec($ch);
     $json_response = json_decode($response);
+    if ($verbose) echo "RESPONSE : ".$response;
     if (!isset($json_response->errors)) {
         echo "ERROR json : ";
         print_r($json_response);
@@ -350,7 +351,8 @@ function updateIndexer($change) {
     emit($change->id, $change, strtoupper($change->doc->type));
 }
 function emit($id, $object, $type, $origin = null) {
-    global $elastic_buffer;
+    global $elastic_buffer, $verbose;
+    if ($verbose) echo "emit($id)\n";
     if (!$origin) {
         $origin = $id;
     }
