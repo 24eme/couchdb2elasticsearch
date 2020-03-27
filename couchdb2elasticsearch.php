@@ -105,7 +105,7 @@ function commitIndexer() {
     if (!count($elastic_buffer)) {
         return true;
     }
-    $data = implode("\n", $elastic_buffer);
+    $data = implode("\n", $elastic_buffer)."\n";
     if ($verbose) echo "commitIndexer\n";
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $elastic_url_db."/_bulk");
