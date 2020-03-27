@@ -171,6 +171,15 @@ function updateIndexer($change) {
     if ($change->doc->type == "Generation") {
         unset($change->doc->fichiers);
     }
+    if ($change->doc->type == "Annuaire") {
+        foreach(array('caves_cooperatives', 'commerciaux', 'negociants', 'recoltants', 'representants') as $type) {
+            $types = array();
+            foreach($change->doc->{$type} as $id => $raison)  {
+                $types[] = array('id' => $id, 'raison_sociale'=> $raison);
+            }
+            $change->doc->{$type} = $types;
+        }
+    }
     if ($change->doc->type == "SV12") {
         $contrats = array();
         foreach($change->doc->contrats as $k => $c) {
