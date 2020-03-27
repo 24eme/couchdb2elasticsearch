@@ -1,7 +1,20 @@
 <?php
 
 $verbose = 0;
-include("config.php");
+
+if (file_exists("config.php")) {
+    include("config.php");
+}
+
+if (isset($argv[1]) && preg_match('/config.*php$/', $argv[1])) {
+    include($argv[1]);
+}
+
+if (!isset($couchdb_url_db) || !isset($elastic_url_db) || !isset($lock_seq_file) || !isset($COMMITER) ){
+    echo "ERROR : config variable missing.\n";
+    echo "Check your configuration file\n";
+    exit;
+}
 
 $elastic_buffer = array();
 $cpt = 0;
