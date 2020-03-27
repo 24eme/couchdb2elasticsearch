@@ -1,0 +1,2267 @@
+{"mappings": {
+    "SOCIETE": {
+        "properties": {
+            "id": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "source": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "seq": {
+                "type": "long"
+            },
+            "doc": {
+                "properties": {
+                    "date_creation": {
+                        "format": "strict_date_optional_time||epoch_millis",
+                        "type": "date"
+                    },
+                    "code_comptable_client": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "fax": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "statut": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "type_societe": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "type": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "date_modification": {
+                        "format": "strict_date_optional_time||epoch_millis",
+                        "type": "date"
+                    },
+                    "code_naf": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "etablissements": {
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "nom": {"type": "string"}
+                        }
+                    },
+                    "compte_societe": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "contacts": {
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "ordre": {
+                                "type": "long"
+                            },
+                            "nom": {"type": "string"}
+                        }
+                    },
+                    "_rev": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "paiement_douane_frequence": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "interpro": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "_id": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "no_tva_intracommunautaire": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "email": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "siege": {
+                        "properties": {
+                            "code_postal": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "adresse_complementaire": {
+                                "type": "string"                            },
+                            "adresse": {
+                                "type": "string"
+                            },
+                            "commune": {
+                                "type": "string"
+                            },
+                            "pays": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "paiement_douane_moyen": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "cooperative": {
+                        "type": "boolean"
+                    },
+                    "raison_sociale_abregee": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "raison_sociale": {
+                        "type": "string"
+                    },
+                    "identifiant": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "telephone": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "commentaire": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "siret": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    }
+                }
+            },
+            "changes": {
+                "properties": {
+                    "rev": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    }
+                }
+            }
+        }
+    },
+    "DRM": {
+        "properties": {
+            "id": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "source": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "seq": {
+                "type": "long"
+            },
+            "doc": {
+                "properties": {
+                    "region": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "numero_archive": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "editeurs": {
+                        "properties": {
+                            "compte": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "date_modification": {
+                                "format": "strict_date_optional_time||epoch_millis",
+                                "type": "date"
+                            },
+                            "nom": {"type": "string"}
+                        }
+                    },
+                    "transmission_douane": {
+                        "properties": {
+                            "coherente": {
+                                "type": "boolean"
+                            },
+                            "horodatage": {
+                                "format": "strict_date_optional_time||epoch_millis",
+                                "type": "date"
+                            },
+                            "id_declaration": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "xml": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "success": {
+                                "type": "boolean"
+                            }
+                        }
+                    },
+                    "type": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "type_creation": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "douane": {
+                        "type": "object"
+                    },
+                    "mouvements": {
+                        "properties": {
+                            "facture": {
+                                "type": "long"
+                            },
+                            "genre": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "region": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "lieu": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "vrac_destinataire": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "date": {
+                                "format": "strict_date_optional_time||epoch_millis",
+                                "type": "date"
+                            },
+                            "version": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "type_drm_libelle": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "type_libelle": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "id": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "categorie": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "type_hash": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "detail_libelle": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "appellation": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "mention": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "facturable": {
+                                "type": "long"
+                            },
+                            "date_version": {
+                                "format": "strict_date_optional_time||epoch_millis",
+                                "type": "date"
+                            },
+                            "type_drm": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "cvo": {
+                                "type": "double"
+                            },
+                            "produit_hash": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "couleur": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "vrac_numero": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "certification": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "produit_libelle": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "detail_identifiant": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "cepage": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "volume": {
+                                "type": "double"
+                            },
+                            "region_destinataire": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            }
+                        }
+                    },
+                    "campagne": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "version": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "_id": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "periode": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "societe": {
+                        "properties": {
+                            "paiement_douane_frequence": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "code_postal": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "fax": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "adresse": {
+                                "type": "string"
+                            },
+                            "email": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "paiement_douane_moyen": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "commune": {
+                                "type": "string"
+                            },
+                            "raison_sociale": {
+                                "type": "string"
+                            },
+                            "telephone": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "siret": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            }
+                        }
+                    },
+                    "documents_annexes": {
+                        "properties": {
+                            "DSADSAC": {
+                                "properties": {
+                                    "nb": {
+                                        "type": "string",
+                                        "index": "not_analyzed"
+                                    },
+                                    "fin": {
+                                        "type": "string",
+                                        "index": "not_analyzed"
+                                    },
+                                    "debut": {
+                                        "type": "string",
+                                        "index": "not_analyzed"
+                                    }
+                                }
+                            },
+                            "DAADAC": {
+                                "properties": {
+                                    "nb": {
+                                        "type": "string",
+                                        "index": "not_analyzed"
+                                    },
+                                    "fin": {
+                                        "type": "string",
+                                        "index": "not_analyzed"
+                                    },
+                                    "debut": {
+                                        "type": "string",
+                                        "index": "not_analyzed"
+                                    }
+                                }
+                            },
+                            "EMPREINTE": {
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "crds": {
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "genre": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "stock_debut": {
+                                "type": "long"
+                            },
+                            "sorties_manquants": {
+                                "type": "long"
+                            },
+                            "entrees_excedents": {
+                                "type": "long"
+                            },
+                            "centilitrage": {
+                                "type": "double"
+                            },
+                            "entrees_achats": {
+                                "type": "long"
+                            },
+                            "couleur": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "sorties_utilisations": {
+                                "type": "long"
+                            },
+                            "detail_libelle": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "stock_fin": {
+                                "type": "long"
+                            },
+                            "sorties_destructions": {
+                                "type": "long"
+                            },
+                            "entrees_retours": {
+                                "type": "long"
+                            }
+                        }
+                    },
+                    "valide": {
+                        "properties": {
+                            "date_signee": {
+                                "format": "strict_date_optional_time||epoch_millis",
+                                "type": "date"
+                            },
+                            "identifiant": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "date_saisie": {
+                                "format": "strict_date_optional_time||epoch_millis",
+                                "type": "date"
+                            }
+                        }
+                    },
+                    "releve_non_apurement": {
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "numero_document": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "date_emission": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "numero_accise": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            }
+                        }
+                    },
+                    "declaration": {
+                        "properties": {
+                            "total": {
+                                "type": "long"
+                            },
+                            "total_recolte": {
+                                "type": "long"
+                            },
+                            "total_entrees_revendique": {
+                                "type": "long"
+                            },
+                            "total_entrees": {
+                                "type": "long"
+                            },
+                            "total_revendique": {
+                                "type": "long"
+                            },
+                            "total_sorties_revendique": {
+                                "type": "long"
+                            },
+                            "total_sorties": {
+                                "type": "long"
+                            },
+                            "total_facturable": {
+                                "type": "long"
+                            },
+                            "total_debut_mois": {
+                                "type": "long"
+                            }
+                        }
+                    },
+                    "declaratif": {
+                        "properties": {
+                            "statistiques": {
+                                "properties": {
+                                    "jus": {
+                                        "type": "long"
+                                    },
+                                    "mcr": {
+                                        "type": "long"
+                                    },
+                                    "vinaigre": {
+                                        "type": "long"
+                                    }
+                                }
+                            },
+                            "daa": {
+                                "type": "object"
+                            },
+                            "caution": {
+                                "type": "object"
+                            },
+                            "paiement": {
+                                "properties": {
+                                    "cvo": {
+                                        "type": "object"
+                                    },
+                                    "douane": {
+                                        "type": "object"
+                                    }
+                                }
+                            },
+                            "dsa": {
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "declarant": {
+                        "properties": {
+                            "region": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "code_postal": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "adresse": {
+                                "type": "string"
+                            },
+                            "no_accises": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "commune": {
+                                "type": "string"
+                            },
+                            "raison_sociale": {"type": "string"},
+                            "famille": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "nom": {"type": "string"},
+                            "cvi": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            }
+                        }
+                    },
+                    "_rev": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "etape": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "teledeclare": {
+                        "type": "boolean"
+                    },
+                    "interpros": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "precedente": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "identifiant": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "commentaire": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    }
+                }
+            },
+            "changes": {
+                "properties": {
+                    "rev": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    }
+                }
+            }
+        }
+    },
+    "GENERATION": {
+        "properties": {
+            "id": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "source": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "seq": {
+                "type": "long"
+            },
+            "doc": {
+                "properties": {
+                    "_rev": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "arguments": {
+                        "properties": {
+                            "message_communication": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "date_mouvement": {
+                                "format": "strict_date_optional_time||epoch_millis",
+                                "type": "date"
+                            },
+                            "modele": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "seuil": {
+                                "type": "long"
+                            },
+                            "date_facturation": {
+                                "format": "strict_date_optional_time||epoch_millis",
+                                "type": "date"
+                            }
+                        }
+                    },
+                    "statut": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "_id": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "nb_documents": {
+                        "type": "long"
+                    },
+                    "documents": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "type_document": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "date_emission": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "type": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "identifiant": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "date_maj": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "somme": {
+                        "type": "double"
+                    }
+                }
+            },
+            "changes": {
+                "properties": {
+                    "rev": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    }
+                }
+            }
+        }
+    },
+    "FACTURE": {
+        "properties": {
+            "id": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "source": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "seq": {
+                "type": "long"
+            },
+            "doc": {
+                "properties": {
+                    "region": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "numero_archive": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "code_comptable_client": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "versement_comptable": {
+                        "type": "long"
+                    },
+                    "date_facturation": {
+                        "format": "strict_date_optional_time||epoch_millis",
+                        "type": "date"
+                    },
+                    "type": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "numero_facture": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "campagne": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "taux_tva": {
+                        "type": "long"
+                    },
+                    "message_communication": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "date_echeance": {
+                        "format": "strict_date_optional_time||epoch_millis",
+                        "type": "date"
+                    },
+                    "_id": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "numero_adherent": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "total_ttc": {
+                        "type": "double"
+                    },
+                    "total_ht": {
+                        "type": "double"
+                    },
+                    "versement_comptable_paiement": {
+                        "type": "long"
+                    },
+                    "statut": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "templates": {
+                        "type": "object"
+                    },
+                    "avoir": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "numero_piece_comptable_origine": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "declarant": {
+                        "properties": {
+                            "code_postal": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "adresse_complementaire": {"type": "string"},
+                            "adresse": {"type": "string"},
+                            "commune": {"type": "string"},
+                            "raison_sociale": {"type": "string"},
+                            "nom": {"type": "string"}
+                        }
+                    },
+                    "_rev": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "arguments": {
+                        "properties": {
+                            "MOUVEMENTS_DRM": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "MOUVEMENTS_SV12_NEGO": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "MOUVEMENTS_SV12": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "MOUVEMENTS_DIVERS": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            }
+                        }
+                    },
+                    "total_taxe": {
+                        "type": "double"
+                    },
+                    "numero_piece_comptable": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "date_emission": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "identifiant": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "emetteur": {
+                        "properties": {
+                            "code_postal": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "adresse": {"type": "string"},
+                            "email": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "ville": {"type": "string"},
+                            "telephone": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            }
+                        }
+                    }
+                }
+            },
+            "changes": {
+                "properties": {
+                    "rev": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    }
+                }
+            }
+        }
+    },
+    "COMPTE": {
+        "properties": {
+            "id": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "source": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "seq": {
+                "type": "long"
+            },
+            "doc": {
+                "properties": {
+                    "id_societe": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "code_postal": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "origines": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "adresse": {"type": "string"},
+                    "societe_informations": {
+                        "properties": {
+                            "code_postal": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "fax": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "adresse_complementaire": {"type": "string"},
+                            "adresse": {"type": "string"},
+                            "email": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "commune": {"type": "string"},
+                            "type": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "raison_sociale": {"type": "string"},
+                            "telephone": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            }
+                        }
+                    },
+                    "type": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "prenom": {"type": "string"},
+                    "_id": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "telephone_mobile": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "teledeclaration_active": {
+                        "type": "boolean"
+                    },
+                    "tags": {
+                        "properties": {
+                            "produit": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "export": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "manuel": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "automatique": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            }
+                        }
+                    },
+                    "fax": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "adresse_complementaire": {"type": "string"},
+                    "statut": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "telephone_perso": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "nom": {"type": "string"},
+                    "nom_a_afficher": {"type": "string"},
+                    "_rev": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "telephone_bureau": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "interpro": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "insee": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "email": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "compte_type": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "commune": {"type": "string"},
+                    "pays": {"type": "string"},
+                    "civilite": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "mot_de_passe": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "identifiant": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "site_internet": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    }
+                }
+            },
+            "changes": {
+                "properties": {
+                    "rev": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    }
+                }
+            }
+        }
+    },
+    "MOUVEMENTSFACTURE": {
+        "properties": {
+            "id": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "source": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "seq": {
+                "type": "long"
+            },
+            "doc": {
+                "properties": {
+                    "_rev": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "_id": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "libelle": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "periode": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "type": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "identifiant": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "date": {
+                        "format": "strict_date_optional_time||epoch_millis",
+                        "type": "date"
+                    },
+                    "mouvements": {
+                        "properties": {
+                            "facture": {
+                                "type": "long"
+                            },
+                            "region": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "libelle": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "vrac_numero": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "quantite": {
+                                "type": "long"
+                            },
+                            "date": {
+                                "format": "strict_date_optional_time||epoch_millis",
+                                "type": "date"
+                            },
+                            "id": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "prix_unitaire": {
+                                "type": "double"
+                            },
+                            "identifiant_analytique_libelle_compta": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "tiers": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "facturable": {
+                                "type": "long"
+                            },
+                            "identifiant_analytique": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "identifiant": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            }
+                        }
+                    },
+                    "valide": {
+                        "properties": {
+                            "date_saisie": {
+                                "format": "strict_date_optional_time||epoch_millis",
+                                "type": "date"
+                            }
+                        }
+                    }
+                }
+            },
+            "changes": {
+                "properties": {
+                    "rev": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    }
+                }
+            }
+        }
+    },
+    "LOCK": {
+        "properties": {
+            "id": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "source": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "seq": {
+                "type": "long"
+            },
+            "doc": {
+                "properties": {
+                    "_rev": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "_id": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "Facture": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "DRM": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "type": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "Vrac": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "SV12": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    }
+                }
+            },
+            "changes": {
+                "properties": {
+                    "rev": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    }
+                }
+            }
+        }
+    },
+    "ETABLISSEMENT": {
+        "properties": {
+            "id": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "source": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "seq": {
+                "type": "long"
+            },
+            "doc": {
+                "properties": {
+                    "id_societe": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "region": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "comptabilite": {
+                        "type": "object"
+                    },
+                    "recette_locale": {
+                        "type": "object"
+                    },
+                    "type": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "teledeclaration_email": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "liaisons_operateurs": {
+                        "type": "object"
+                    },
+                    "_id": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "compte": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "mois_stock_debut": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "no_accises": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "crd_regime": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "raison_sociale": {"type": "string"},
+                    "type_dr": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "relance_ds": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "sous_famille": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "raisins_mouts": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "fax": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "statut": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "date_modification": {
+                        "format": "strict_date_optional_time||epoch_millis",
+                        "type": "date"
+                    },
+                    "cvi": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "nom": {"type": "string"},
+                    "_rev": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "interpro": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "exclusion_drm": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "email": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "nature_inao": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "siege": {
+                        "properties": {
+                            "code_postal": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "adresse_complementaire": {"type": "string"},
+                            "adresse": {"type": "string"},
+                            "commune": {"type": "string"},
+                            "pays": {"type": "string"}
+                        }
+                    },
+                    "identifiant": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "telephone": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "famille": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "commentaire": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    }
+                }
+            },
+            "changes": {
+                "properties": {
+                    "rev": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    }
+                }
+            }
+        }
+    },
+    "SV12": {
+        "properties": {
+            "id": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "source": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "seq": {
+                "type": "long"
+            },
+            "doc": {
+                "properties": {
+                    "region": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "numero_archive": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "type": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "declarant": {
+                        "properties": {
+                            "region": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "code_postal": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "adresse": {"type": "string"},
+                            "no_accises": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "commune": {"type": "string"},
+                            "raison_sociale": {"type": "string"},
+                            "famille": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "nom": {"type": "string"},
+                            "cvi": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            }
+                        }
+                    },
+                    "mouvements": {
+                        "properties": {
+                            "facture": {
+                                "type": "long"
+                            },
+                            "region": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "cvo": {
+                                "type": "double"
+                            },
+                            "produit_hash": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "vrac_destinataire": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "date": {
+                                "format": "strict_date_optional_time||epoch_millis",
+                                "type": "date"
+                            },
+                            "version": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "type_libelle": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "id": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "produit_libelle": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "categorie": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "type_hash": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "volume": {
+                                "type": "double"
+                            },
+                            "tiers": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "facturable": {
+                                "type": "long"
+                            },
+                            "date_version": {
+                                "format": "strict_date_optional_time||epoch_millis",
+                                "type": "date"
+                            }
+                        }
+                    },
+                    "campagne": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "version": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "totaux": {
+                        "properties": {
+                            "produits": {
+                                "properties": {
+                                    "produit_hash": {
+                                        "type": "string",
+                                        "index": "not_analyzed"
+                                    },
+                                    "volume_ecarts": {
+                                        "type": "double"
+                                    },
+                                    "volume_mouts": {
+                                        "type": "long"
+                                    },
+                                    "volume_raisins": {
+                                        "type": "long"
+                                    }
+                                }
+                            },
+                            "volume_ecarts": {
+                                "type": "double"
+                            },
+                            "volume_mouts": {
+                                "type": "long"
+                            },
+                            "volume_raisins": {
+                                "type": "long"
+                            }
+                        }
+                    },
+                    "_rev": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "contrats": {
+                        "properties": {
+                            "produit_libelle": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "vendeur_nom": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "cvo": {
+                                "type": "double"
+                            },
+                            "contrat_type": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "produit_hash": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "volume": {
+                                "type": "double"
+                            },
+                            "vendeur_identifiant": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            }
+                        }
+                    },
+                    "_id": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "periode": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "identifiant": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "valide": {
+                        "properties": {
+                            "statut": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "date_saisie": {
+                                "format": "strict_date_optional_time||epoch_millis",
+                                "type": "date"
+                            }
+                        }
+                    }
+                }
+            },
+            "changes": {
+                "properties": {
+                    "rev": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    }
+                }
+            }
+        }
+    },
+    "CSVDRM": {
+        "properties": {
+            "id": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "source": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "seq": {
+                "type": "long"
+            },
+            "doc": {
+                "properties": {
+                    "_rev": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "statut": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "_id": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "periode": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "erreurs": {
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "diagnostic": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "csv_erreur": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "num_ligne": {
+                                "type": "long"
+                            }
+                        }
+                    },
+                    "type": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "identifiant": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    }
+                }
+            },
+            "changes": {
+                "properties": {
+                    "rev": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    }
+                }
+            }
+        }
+    },
+    "DRMMVT": {
+        "properties": {
+            "id": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "source": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "doc": {
+                "properties": {
+                    "region": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "numero_archive": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "teledeclare": {
+                        "type": "boolean"
+                    },
+                    "periode": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "type": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "identifiant": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "drmid": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "type_creation": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "mouvements": {
+                        "properties": {
+                            "facture": {
+                                "type": "long"
+                            },
+                            "genre": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "region": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "lieu": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "vrac_destinataire": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "date": {
+                                "format": "strict_date_optional_time||epoch_millis",
+                                "type": "date"
+                            },
+                            "version": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "type_drm_libelle": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "type_libelle": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "id": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "categorie": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "type_hash": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "detail_libelle": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "appellation": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "mention": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "facturable": {
+                                "type": "long"
+                            },
+                            "date_version": {
+                                "format": "strict_date_optional_time||epoch_millis",
+                                "type": "date"
+                            },
+                            "type_drm": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "cvo": {
+                                "type": "double"
+                            },
+                            "produit_hash": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "couleur": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "vrac_numero": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "certification": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "produit_libelle": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "detail_identifiant": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "cepage": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "volume": {
+                                "type": "double"
+                            },
+                            "region_destinataire": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            }
+                        }
+                    },
+                    "declarant": {
+                        "properties": {
+                            "region": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "code_postal": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "adresse": {"type": "string"},
+                            "no_accises": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "commune": {"type": "string"},
+                            "raison_sociale": {"type": "string"},
+                            "famille": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "nom": {"type": "string"},
+                            "cvi": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            }
+                        }
+                    },
+                    "valide": {
+                        "properties": {
+                            "date_signee": {
+                                "format": "strict_date_optional_time||epoch_millis",
+                                "type": "date"
+                            },
+                            "identifiant": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "date_saisie": {
+                                "format": "strict_date_optional_time||epoch_millis",
+                                "type": "date"
+                            }
+                        }
+                    },
+                    "campagne": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "version": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    }
+                }
+            }
+        }
+    },
+    "VRAC": {
+        "properties": {
+            "id": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "source": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "seq": {
+                "type": "long"
+            },
+            "doc": {
+                "properties": {
+                    "genre": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "numero_archive": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "cvo_repartition": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "prix_initial_total": {
+                        "type": "long"
+                    },
+                    "vendeur_tva": {
+                        "type": "long"
+                    },
+                    "bouteilles_contenance_libelle": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "vendeur_identifiant": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "type": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "vendeur": {
+                        "properties": {
+                            "region": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "code_postal": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "adresse": {"type": "string"},
+                            "no_accises": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "commune": {"type": "string"},
+                            "no_tva_intracomm": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "raison_sociale": {"type": "string"},
+                            "famille": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "siret": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "nom": {"type": "string"},
+                            "cvi": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            }
+                        }
+                    },
+                    "versement_fa": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "prix_initial_unitaire": {
+                        "type": "long"
+                    },
+                    "enlevement_date": {
+                        "format": "strict_date_optional_time||epoch_millis",
+                        "type": "date"
+                    },
+                    "prix_total": {
+                        "type": "long"
+                    },
+                    "numero_contrat": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "representant": {
+                        "properties": {
+                            "region": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "code_postal": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "adresse": {"type": "string"},
+                            "no_accises": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "commune": {"type": "string"},
+                            "no_tva_intracomm": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "raison_sociale": {"type": "string"},
+                            "famille": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "siret": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "nom": {"type": "string"},
+                            "cvi": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            }
+                        }
+                    },
+                    "date_visa": {
+                        "format": "strict_date_optional_time||epoch_millis",
+                        "type": "date"
+                    },
+                    "valide": {
+                        "properties": {
+                            "statut": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "date_saisie": {
+                                "format": "strict_date_optional_time||epoch_millis",
+                                "type": "date"
+                            }
+                        }
+                    },
+                    "produit": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "volume_initial": {
+                        "type": "long"
+                    },
+                    "date_campagne": {
+                        "format": "strict_date_optional_time||epoch_millis",
+                        "type": "date"
+                    },
+                    "couleur": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "label": {
+                        "type": "object"
+                    },
+                    "_rev": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "mandataire": {
+                        "type": "object"
+                    },
+                    "produit_libelle": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "etape": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "interne": {
+                        "type": "boolean"
+                    },
+                    "millesime_85_15": {
+                        "type": "boolean"
+                    },
+                    "volume_propose": {
+                        "type": "double"
+                    },
+                    "volume_enleve": {
+                        "type": "double"
+                    },
+                    "lieu": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "acheteur": {
+                        "properties": {
+                            "region": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "code_postal": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "adresse": {"type": "string"},
+                            "no_accises": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "commune": {"type": "string"},
+                            "no_tva_intracomm": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "raison_sociale": {"type": "string"},
+                            "famille": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "siret": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            },
+                            "nom": {"type": "string"},
+                            "cvi": {
+                                "type": "string",
+                                "index": "not_analyzed"
+                            }
+                        }
+                    },
+                    "type_transaction": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "prix_unitaire_hl": {
+                        "type": "long"
+                    },
+                    "campagne": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "date_signature": {
+                        "format": "strict_date_optional_time||epoch_millis",
+                        "type": "date"
+                    },
+                    "_id": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "prix_unitaire": {
+                        "type": "long"
+                    },
+                    "prix_initial_unitaire_hl": {
+                        "type": "long"
+                    },
+                    "appellation": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "mention": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "acheteur_identifiant": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "cepage_85_15": {
+                        "type": "boolean"
+                    },
+                    "millesime": {
+                        "type": "long"
+                    },
+                    "bouteilles_contenance_volume": {
+                        "type": "double"
+                    },
+                    "jus_quantite": {
+                        "type": "double"
+                    },
+                    "categorie_vin": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "mandataire_exist": {
+                        "type": "boolean"
+                    },
+                    "certification": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "unites": {
+                        "properties": {
+                            "prix_initial_unitaire": {
+                                "properties": {
+                                    "EURO_HECTOLITRE": {
+                                        "type": "string",
+                                        "index": "not_analyzed"
+                                    }
+                                }
+                            },
+                            "surface": {
+                                "type": "object"
+                            },
+                            "volume_initial": {
+                                "properties": {
+                                    "HECTOLITRE": {
+                                        "type": "string",
+                                        "index": "not_analyzed"
+                                    }
+                                }
+                            },
+                            "jus_quantite": {
+                                "properties": {
+                                    "HECTOLITRE": {
+                                        "type": "string",
+                                        "index": "not_analyzed"
+                                    }
+                                }
+                            },
+                            "raisin_quantite": {
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "cepage": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "representant_identifiant": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "interlocuteur_commercial": {
+                        "type": "object"
+                    }
+                }
+            },
+            "changes": {
+                "properties": {
+                    "rev": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    }
+                }
+            }
+        }
+    }
+  }
+}
