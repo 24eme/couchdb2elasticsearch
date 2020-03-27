@@ -227,6 +227,12 @@ function updateIndexer($change) {
     }
     if ($change->doc->type == "Vrac") {
         $keys = explode('/', $change->doc->produit);
+        if (!count($keys)) {
+            echo "ERROR : no product keys found : ";
+            print_r($change);
+            echo "\n";
+            return;
+        }
         $change->doc->certification = $keys[3];
         $change->doc->genre = $keys[5];
         $change->doc->appellation = $keys[7];
