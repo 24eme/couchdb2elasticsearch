@@ -108,9 +108,12 @@ function storeSeq($seq) {
 }
 
 function readLockFile() {
-  global $last_seq, $lock_seq_file, $lock, $changes;
+  global $last_seq, $lock_seq_file, $lock, $changes, lock_file;
   $lock = fopen($lock_seq_file, 'a+');
-  if (!$lock) die('error with lock file');
+  if (!$lock) {
+      unlink($lock_file);
+      die(""ERROR : could no open lock file $lock_seq_file\n");
+  }
   fseek($lock, 0);
   $last_seq = rtrim(fgets($lock));
   //On s'assure qu'on revient au last_seq sauvé
