@@ -2,21 +2,28 @@
 
 $verbose = 0;
 
-if (isset($argv[1]) && preg_match('/config.*php$/', $argv[1])) {
-    include($argv[1]);
-}else{
+if (!isset($argv[1]) || !preg_match('/config.*php$/', $argv[1])) {
     echo "ERROR: config file missing in arguments\n";
     echo "\n";
     echo "USAGE : ".$argv[0]." <a_config_file.php>\n";
     echo "\n";
     exit(1);
 }
+$config_file = $argv[1];
+include($config_file);
+$lock_file = "/tmp/couchdb2elasticsearch_".$config_file.".lock";
 
 if (!isset($couchdb_url_db) || !isset($elastic_url_db) || !isset($lock_seq_file) || !isset($COMMITER) ){
     echo "ERROR : config variable missing.\n";
     echo "Check your configuration file\n";
     exit(2);
 }
+
+if (file_exists($lock_file)) {
+    if ($verbose) echo "ERROR : indexer already running for $lock_file\n";
+    exit(3);
+}
+touch($lock_file);
 
 $elastic_buffer = array();
 $noactivity = 0;
@@ -86,6 +93,7 @@ while(1) {
     storeSeq($last_seq);
 }
 fclose($lock);
+unlink($lock_file);
 
 //Commit les données puis sauve
 function storeSeq($seq) {
