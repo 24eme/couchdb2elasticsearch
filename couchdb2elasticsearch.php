@@ -11,19 +11,19 @@ if (!isset($argv[1]) || !preg_match('/config.*php$/', $argv[1])) {
 }
 $config_file = $argv[1];
 include($config_file);
-$lock_file = "/tmp/couchdb2elasticsearch_".$config_file.".lock";
+$lock_file_path = "/tmp/couchdb2elasticsearch_".$config_file.".lock";
 
-if (!isset($couchdb_url_db) || !isset($elastic_url_db) || !isset($lock_seq_file) || !isset($COMMITER) ){
+if (!isset($couchdb_url_db) || !isset($elastic_url_db) || !isset($seq_file_path) || !isset($COMMITER) ){
     echo "ERROR : config variable missing.\n";
     echo "Check your configuration file\n";
     exit(2);
 }
 
-if (file_exists($lock_file)) {
-    if ($verbose) echo "ERROR : indexer already running for $lock_file\n";
+if (file_exists($lock_file_path)) {
+    if ($verbose) echo "ERROR : indexer already running for $lock_file_path\n";
     exit(3);
 }
-touch($lock_file);
+touch($lock_file_path);
 
 $elastic_buffer = array();
 $noactivity = 0;
@@ -92,30 +92,30 @@ while(1) {
     }
     storeSeq($last_seq);
 }
-fclose($lock);
-unlink($lock_file);
+fclose($seqfile);
+unlink($lock_file_path);
 
 //Commit les données puis sauve
 function storeSeq($seq) {
-  global $lock, $cpt, $lock_seq_file, $verbose;
+  global $seqfile, $cpt, $seq_file_path, $verbose;
   if ($verbose) echo "storeSequence (1) : $seq ($cpt)\n";
   if (commitIndexer()) {
-    fclose($lock);
-    $lock = fopen($lock_seq_file, 'w+');
-    fwrite($lock, $seq."\n");
+    fclose($seqfile);
+    $seqfile = fopen($seq_file_path, 'w+');
+    fwrite($seqfile, $seq."\n");
     $cpt = 0;
   }
 }
 
 function readLockFile() {
-  global $last_seq, $lock_seq_file, $lock, $changes, lock_file;
-  $lock = fopen($lock_seq_file, 'a+');
-  if (!$lock) {
-      unlink($lock_file);
-      die(""ERROR : could no open lock file $lock_seq_file\n");
+  global $last_seq, $seq_file_path, $seqfile, $changes, $lock_file_path;
+  $seqfile = fopen($seq_file_path, 'a+');
+  if (!$seqfile) {
+      unlink($lock_file_path);
+      die("ERROR : could no open lock file $seq_file_path\n");
   }
-  fseek($lock, 0);
-  $last_seq = rtrim(fgets($lock));
+  fseek($seqfile, 0);
+  $last_seq = rtrim(fgets($seqfile));
   //On s'assure qu'on revient au last_seq sauvé
   if ($changes) {
     fclose($changes);
