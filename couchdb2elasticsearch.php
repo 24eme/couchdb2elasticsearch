@@ -421,8 +421,10 @@ function deleteIndexer($change) {
     $json = json_decode($result);
     curl_close($ch);
     if (!$json || !isset($json->hits)) {
-        print_r($json);
-        throw new Exception("bad response (delete) : network problem ?");
+        echo "ERROR elastic: ";
+        print_r($result);
+        echo "\nURL: ".$elastic_url_db."/_search?q=source:".$change->id."\n";
+        throw new Exception("bad response (search for delete) : network problem ?");
     }
     foreach($json->hits->hits as $hit) {
         if (!isset($hit->source) || ($hit->source != $change->id)) {
