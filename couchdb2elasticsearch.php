@@ -1,13 +1,15 @@
 <?php
 
-$verbose = 0;
-
 if (!isset($argv[1]) || !preg_match('/config.*php$/', $argv[1])) {
     echo "ERROR: config file missing in arguments\n";
     echo "\n";
     echo "USAGE : ".$argv[0]." <a_config_file.php>\n";
     echo "\n";
     exit(1);
+}
+$verbose = 0;
+if (isset($argv[2])) {
+    $verbose = 1;
 }
 $config_file = $argv[1];
 include($config_file);
