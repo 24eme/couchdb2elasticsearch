@@ -348,6 +348,36 @@ function updateIndexer($change) {
             $change->doc->releve_non_apurement = $releve_non_apurements;
         }
     }
+    if ($change->doc->type == "Habilitation") {
+        $declaration = array();
+        foreach($change->doc->declaration as $key => $d) {
+            $d->produit_hash = $key;
+            $declaration[] = $d;
+        }
+        $change->doc->declaration = $declaration;
+    }
+    if ($change->doc->type == "DRev") {
+        $declaration = array();
+        foreach($change->doc->declaration as $pkey => $details) {
+            foreach($details as $dkey => $d) {
+                $d->produit_hash = $pkey;
+                $d->detail_hash = $dkey;
+                $declaration[] = $d;
+            }
+        }
+        $change->doc->declaration = $declaration;
+    }
+    if ($change->doc->type == "DR" || $change->doc->type == "SV11" || $change->doc->type == "SV12") {
+        $mouvements = array();
+        foreach($change->doc->mouvements as $tkey => $tiers) {
+            foreach($tiers as $mkey => $mvt) {
+                $mvt->mouvement_key = $mkey;
+                $mvt->tiers_key = $tkey;
+                $mouvements[] = $mvt;
+            }
+        }
+        $change->doc->mouvements = $mouvements;
+    }
     emit($change->id, $change, strtoupper($change->doc->type));
 }
 function emit($id, $object, $type, $origin = null) {
