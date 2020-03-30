@@ -53,3 +53,4 @@
 
 #couchdb2elasticsearch
 config.php
+config_*.php
