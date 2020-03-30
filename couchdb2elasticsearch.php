@@ -35,6 +35,10 @@ while(1) {
     $cpt = 0;
     //Pour chaque changement, on récupére le document couchdb
     while($changes && ($l = fgets($changes))) {
+        if(!str_replace("\n", "", $l)) {
+            continue;
+        }
+
         $cpt++;
 
         //Decode le json fourni par couchdb
