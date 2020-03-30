@@ -19,7 +19,7 @@ if (!isset($couchdb_url_db) || !isset($elastic_url_db) || !isset($lock_seq_file)
 }
 
 $elastic_buffer = array();
-$cpt = 0;
+$noactivity = 0;
 readLockFile();
 
 while(1) {
@@ -36,11 +36,9 @@ while(1) {
     //Pour chaque changement, on récupére le document couchdb
     while($changes && ($l = fgets($changes))) {
         if(!str_replace("\n", "", $l)) {
+            if ($verbose) echo "Empty response\n";
             continue;
         }
-
-        $cpt++;
-
         //Decode le json fourni par couchdb
         $change = json_decode($l);
         if (!$change) {
@@ -48,12 +46,15 @@ while(1) {
             continue;
         }
 
-        //Si un doc couchdb a un last_seq, c'est qu'il nous demande de forcer la sequence
-        //Et on repartira de là
+        //Si change a last_seq, c'est qu'on est en timeout
+        //On s'arrête et on repartira de là
         if (isset($change->last_seq)) {
             storeSeq($change->last_seq);
             break;
         }
+
+        $cpt++;
+        $noactivity = 0;
 
         $last_seq = $change->seq;
         if (isset($change->deleted)) {
@@ -73,6 +74,14 @@ while(1) {
     if ($changes) {
         fclose($changes);
         $changes = null;
+    }
+    if (!$cpt) {
+        $noactivity++;
+        if ($verbose) echo "NO activity: $noactivity\n";
+        if (!($noactivity % 10)) {
+            break;
+        }
+        continue;
     }
     storeSeq($last_seq);
 }
