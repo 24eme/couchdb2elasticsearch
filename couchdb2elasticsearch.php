@@ -29,7 +29,7 @@ touch($lock_file_path);
 
 $elastic_buffer = array();
 $noactivity = 0;
-readLockFile();
+readSeqFile();
 
 while(1) {
 
@@ -109,7 +109,7 @@ function storeSeq($seq) {
   }
 }
 
-function readLockFile() {
+function readSeqFile() {
   global $last_seq, $seq_file_path, $seqfile, $changes, $lock_file_path;
   $seqfile = fopen($seq_file_path, 'a+');
   if (!$seqfile) {
