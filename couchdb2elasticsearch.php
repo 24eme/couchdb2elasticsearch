@@ -127,7 +127,7 @@ function readSeqFile() {
 }
 
 function commitIndexer() {
-    global $elastic_url_db, $elastic_buffer, $verbose;
+    global $elastic_url_db, $elastic_buffer, $verbose, $lock_file_path;
     if (!count($elastic_buffer)) {
         return true;
     }
@@ -148,6 +148,7 @@ function commitIndexer() {
         echo "\nDATA :";
         print_r($data);
         echo "\n";
+        unlink($lock_file_path);
         throw new Exception("bad response (indexer): network problem ?");
     }elseif ($json_response->errors) {
         if (count($elastic_buffer) == 1) {
@@ -425,7 +426,7 @@ function emit($id, $object, $type, $origin = null) {
 }
 
 function deleteIndexer($change) {
-    global $elastic_url_db, $elastic_buffer, $verbose;
+    global $elastic_url_db, $elastic_buffer, $verbose, $lock_file_path;
     if ($verbose) echo "deleteIndexer (1) : ".$change->id."\n";
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $elastic_url_db."/_search?q=source:".$change->id);
@@ -437,6 +438,7 @@ function deleteIndexer($change) {
         echo "ERROR elastic: ";
         print_r($result);
         echo "\nURL: ".$elastic_url_db."/_search?q=source:".$change->id."\n";
+        unlink($lock_file_path);
         throw new Exception("bad response (search for delete) : network problem ?");
     }
     foreach($json->hits->hits as $hit) {
