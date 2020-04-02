@@ -395,15 +395,17 @@ function updateIndexer($change) {
         $change->doc->declaration = $declaration;
     }
     if ($change->doc->type == "DR" || $change->doc->type == "SV11" || $change->doc->type == "SV12") {
-        $mouvements = array();
-        foreach($change->doc->mouvements as $tkey => $tiers) {
-            foreach($tiers as $mkey => $mvt) {
-                $mvt->mouvement_key = $mkey;
-                $mvt->tiers_key = $tkey;
-                $mouvements[] = $mvt;
+        if (isset($change->doc->mouvements)) {
+            $mouvements = array();
+            foreach($change->doc->mouvements as $tkey => $tiers) {
+                foreach($tiers as $mkey => $mvt) {
+                    $mvt->mouvement_key = $mkey;
+                    $mvt->tiers_key = $tkey;
+                    $mouvements[] = $mvt;
+                }
             }
+            $change->doc->mouvements = $mouvements;
         }
-        $change->doc->mouvements = $mouvements;
     }
     emit($change->id, $change, strtoupper($change->doc->type));
 }
