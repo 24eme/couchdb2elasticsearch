@@ -63,7 +63,7 @@ while(1) {
 
         //Not views
         if (isset($change->id) && preg_match('/^_/', $change->id)) {
-            return ;
+            continue;
         }
 
         $cpt++;
