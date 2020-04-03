@@ -390,6 +390,7 @@ function updateIndexer($change) {
         $change->doc->declaration = $declaration;
     }
     if ($change->doc->type == "DRev") {
+        unset($change->doc->documents);
         $declaration = array();
         foreach($change->doc->declaration as $pkey => $details) {
             foreach($details as $dkey => $d) {
