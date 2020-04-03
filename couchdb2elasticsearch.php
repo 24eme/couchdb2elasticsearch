@@ -54,16 +54,16 @@ while(1) {
             echo "ERROR : pb json : $l\n";
             continue;
         }
-        //Not views
-        if (preg_match('/^_/', $change->id)) {
-            return ;
-        }
-
         //Si change a last_seq, c'est qu'on est en timeout
         //On s'arrête et on repartira de là
         if (isset($change->last_seq)) {
             storeSeq($change->last_seq);
             break;
+        }
+
+        //Not views
+        if (isset($change->id) && preg_match('/^_/', $change->id)) {
+            return ;
         }
 
         $cpt++;
