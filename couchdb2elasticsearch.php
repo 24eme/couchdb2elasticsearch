@@ -211,25 +211,31 @@ function updateIndexer($change) {
         }
     }
     if ($change->doc->type == "SV12") {
-        $contrats = array();
-        foreach($change->doc->contrats as $k => $c) {
-            $contrats[] = $c;
-        }
-        $change->doc->contrats = $contrats;
-        $produits = array();
-        foreach($change->doc->totaux->produits as $k => $p) {
-            $produits[] = $p;
-        }
-        $change->doc->totaux->produits = $produits;
-        $mouvements = array();
-        foreach($change->doc->mouvements as $tiers => $t_mouvements) {
-            foreach($t_mouvements as $id => $mvt) {
-                $mvt->tiers = $tiers;
-                $mvt->id = $id;
-                $mouvements[] = $mvt;
+        if (isset($change->doc->contrats)) {
+            $contrats = array();
+            foreach($change->doc->contrats as $k => $c) {
+                $contrats[] = $c;
             }
+            $change->doc->contrats = $contrats;
         }
-        $change->doc->mouvements = $mouvements;
+        if (isset($change->doc->totaux)) {
+            $produits = array();
+            foreach($change->doc->totaux->produits as $k => $p) {
+                $produits[] = $p;
+            }
+            $change->doc->totaux->produits = $produits;
+        }
+        if (isset($change->doc->mouvements)) {
+            $mouvements = array();
+            foreach($change->doc->mouvements as $tiers => $t_mouvements) {
+                foreach($t_mouvements as $id => $mvt) {
+                    $mvt->tiers = $tiers;
+                    $mvt->id = $id;
+                    $mouvements[] = $mvt;
+                }
+            }
+            $change->doc->mouvements = $mouvements;
+        }
     }
     if ($change->doc->type == "CSVDRM") {
         $erreurs = array();
