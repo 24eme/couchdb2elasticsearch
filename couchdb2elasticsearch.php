@@ -251,6 +251,13 @@ function updateIndexer($change) {
         }
         $change->doc->erreurs = $erreurs;
     }
+    if ($change->doc->type == "Etablissement") {
+        $liaisons = array();
+        foreach ($change->doc->liaisons_operateurs as $k => $o) {
+            $liaisons[] = $o;
+        }
+        $change->doc->liaisons_operateurs = $liaisons;
+    }
     if ($change->doc->type == "Societe") {
         $contacts = array();
         foreach($change->doc->contacts as $id => $c) {
@@ -394,6 +401,12 @@ function updateIndexer($change) {
             $declaration[] = $d;
         }
         $change->doc->declaration = $declaration;
+        $demandes = array();
+        foreach($change->doc->demandes as $key => $d) {
+            $d->produit_hash = $key;
+            $demandes[] = $d;
+        }
+        $change->doc->demandes = $demandes;
     }
     if ($change->doc->type == "DRev") {
         unset($change->doc->documents);
