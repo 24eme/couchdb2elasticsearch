@@ -405,6 +405,17 @@ function updateIndexer($change) {
                 $declaration[] = $d;
             }
         }
+        if (isset($change->doc->mouvements)) {
+            $mouvements = array();
+            foreach($change->doc->mouvements as $tkey => $tiers) {
+                foreach($tiers as $mkey => $mvt) {
+                    $mvt->mouvement_key = $mkey;
+                    $mvt->tiers_key = $tkey;
+                    $mouvements[] = $mvt;
+                }
+            }
+            $change->doc->mouvements = $mouvements;
+        }
         $change->doc->declaration = $declaration;
     }
     if ($change->doc->type == "DR" || $change->doc->type == "SV11" || $change->doc->type == "SV12") {
