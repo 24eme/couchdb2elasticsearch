@@ -29,6 +29,7 @@ touch($lock_file_path);
 
 $elastic_buffer = array();
 $noactivity = 0;
+$error_nb = 0;
 readSeqFile();
 
 while(1) {
@@ -131,7 +132,7 @@ function readSeqFile() {
 }
 
 function commitIndexer() {
-    global $elastic_url_db, $elastic_buffer, $verbose, $lock_file_path;
+    global $elastic_url_db, $elastic_buffer, $verbose, $lock_file_path,$error_nb;
     if (!count($elastic_buffer)) {
         return true;
     }
@@ -161,6 +162,11 @@ function commitIndexer() {
             echo "\nDATA :";
             print_r($data);
             echo "\n";
+            $error_nb++;
+            if ($error_nb > 100) {
+                unlink($lock_file_path);
+                throw new Exception("too many errors");
+            }
         }else{
             $buffers = $elastic_buffer;
             foreach($buffers as $b) {
