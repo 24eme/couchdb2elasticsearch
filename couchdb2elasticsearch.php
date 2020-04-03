@@ -54,6 +54,10 @@ while(1) {
             echo "ERROR : pb json : $l\n";
             continue;
         }
+        //Not views
+        if (preg_match('/^_/', $change->id)) {
+            return ;
+        }
 
         //Si change a last_seq, c'est qu'on est en timeout
         //On s'arrête et on repartira de là
@@ -173,10 +177,6 @@ function commitIndexer() {
 function updateIndexer($change) {
     global $verbose;
     if ($verbose) echo "updateIndexer (1) : ".$change->id."\n";
-    //Not views
-    if (preg_match('/^_/', $change->id)) {
-        return ;
-    }
     if (!isset($change->doc->type)) {
         echo "ERROR: no type for : ";
         print_r($change);
