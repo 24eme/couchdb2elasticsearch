@@ -401,12 +401,14 @@ function updateIndexer($change) {
             $declaration[] = $d;
         }
         $change->doc->declaration = $declaration;
-        $demandes = array();
-        foreach($change->doc->demandes as $key => $d) {
-            $d->produit_hash = $key;
-            $demandes[] = $d;
+        if (isset($change->doc->demandes)) {
+            $demandes = array();
+            foreach($change->doc->demandes as $key => $d) {
+                $d->produit_hash = $key;
+                $demandes[] = $d;
+            }
+            $change->doc->demandes = $demandes;
         }
-        $change->doc->demandes = $demandes;
     }
     if ($change->doc->type == "DRev") {
         unset($change->doc->documents);
