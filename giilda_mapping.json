@@ -1490,7 +1490,6 @@
                                 "type": "string"
                             },
                             "aliases": {
-                                "index": "not_analyzed",
                                 "type": "object"
                             },
                             "type_liaison": {
@@ -2280,6 +2279,7 @@
                      "type": "string"
                  },
                  "fichier_id": {
+                     "index": "not_analyzed",
                      "type": "string"
                  },
                  "pieces": {
@@ -2506,6 +2506,7 @@
                             "type": "long"
                         },
                         "produit_hash": {
+                            "index": "not_analyzed",
                             "type": "string"
                         },
                         "vci": {
@@ -2642,7 +2643,6 @@
                             "type": "string"
                         },
                         "commune": {
-                    "index": "not_analyzed",
                             "type": "string"
                         },
                         "telephone": {
@@ -2787,6 +2787,7 @@
                      "declaration": {
                          "properties": {
                              "libelle": {
+                                 "index": "not_analyzed",
                                  "type": "string"
                              },
                              "activites": {
