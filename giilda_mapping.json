@@ -1016,6 +1016,18 @@
                         "index": "not_analyzed"
                     },
                     "adresse": {"type": "string"},
+                    "etablissement_informations": {
+                        "properties": {
+                            "cvi": {
+                        "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "ppm": {
+                        "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        }
+                    },
                     "societe_informations": {
                         "properties": {
                             "code_postal": {
@@ -1061,23 +1073,35 @@
                         "type": "boolean"
                     },
                     "tags": {
-                        "properties": {
-                            "produit": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "export": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "manuel": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            },
-                            "automatique": {
-                                "type": "string",
-                                "index": "not_analyzed"
-                            }
+                        "properties" : {
+                           "produit" : {
+                              "index" : "not_analyzed",
+                              "type" : "string"
+                           },
+                           "activite" : {
+                              "type" : "string",
+                              "index" : "not_analyzed"
+                           },
+                           "manuel" : {
+                              "type" : "string",
+                              "index" : "not_analyzed"
+                           },
+                           "groupes" : {
+                              "type" : "string",
+                              "index" : "not_analyzed"
+                           },
+                           "relations" : {
+                              "type" : "string",
+                              "index" : "not_analyzed"
+                           },
+                           "export" : {
+                              "index" : "not_analyzed",
+                              "type" : "string"
+                           },
+                           "automatique" : {
+                              "type" : "string",
+                              "index" : "not_analyzed"
+                           }
                         }
                     },
                     "fax": {
@@ -1146,6 +1170,102 @@
                         "index": "not_analyzed"
                     }
                 }
+            }
+        }
+    },
+    "FICHIER": {
+        "properties": {
+            "changes": {
+                "properties": {
+                    "rev": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    }
+                }
+            },
+            "doc": {
+                "properties": {
+                    "pieces": {
+                        "properties": {
+                            "categorie": {
+                        "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "fichiers": {
+                        "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "identifiant": {
+                        "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "libelle": {
+                        "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "visibilite": {
+                                "type": "long"
+                            },
+                            "date_depot": {
+                                "format": "strict_date_optional_time||epoch_millis",
+                                "type": "date"
+                            }
+                        }
+                    },
+                    "date_import": {
+                        "format": "strict_date_optional_time||epoch_millis",
+                        "type": "date"
+                    },
+                    "categorie": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "identifiant": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "libelle": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "_rev": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "visibilite": {
+                        "type": "long"
+                    },
+                    "date_depot": {
+                        "format": "strict_date_optional_time||epoch_millis",
+                        "type": "date"
+                    },
+                    "_id": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "type": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    },
+                    "papier": {
+                        "type": "long"
+                    },
+                    "fichier_id": {
+                        "index": "not_analyzed",
+                        "type": "string"
+                    }
+                }
+            },
+            "id": {
+                "index": "not_analyzed",
+                "type": "string"
+            },
+            "source": {
+                "index": "not_analyzed",
+                "type": "string"
+            },
+            "seq": {
+                "type": "long"
             }
         }
     },
@@ -1357,7 +1477,35 @@
                         "index": "not_analyzed"
                     },
                     "liaisons_operateurs": {
-                        "type": "object"
+                        "properties": {
+                            "attributs_chai": {
+                                "type": "object"
+                            },
+                            "id_etablissement": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "libelle_etablissement": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "aliases": {
+                                "index": "not_analyzed",
+                                "type": "object"
+                            },
+                            "type_liaison": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "cvi": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            },
+                            "ppm": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                            }
+                        }
                     },
                     "_id": {
                         "type": "string",
@@ -2000,6 +2148,849 @@
             }
         }
     },
+    "SV11": {
+        "properties": {
+        "changes": {
+            "properties": {
+                "rev": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                }
+            }
+        },
+        "doc": {
+            "properties": {
+                "pieces": {
+                    "properties": {
+                        "fichiers": {
+                    "index": "not_analyzed",
+                            "type": "string"
+                        },
+                        "identifiant": {
+                    "index": "not_analyzed",
+                            "type": "string"
+                        },
+                        "libelle": {
+                    "index": "not_analyzed",
+                            "type": "string"
+                        },
+                        "visibilite": {
+                            "type": "long"
+                        },
+                        "date_depot": {
+                            "format": "strict_date_optional_time||epoch_millis",
+                            "type": "date"
+                        }
+                    }
+                },
+                "date_import": {
+                    "format": "strict_date_optional_time||epoch_millis",
+                    "type": "date"
+                },
+                "campagne": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "identifiant": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "libelle": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "_rev": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "visibilite": {
+                    "type": "long"
+                },
+                "date_depot": {
+                    "format": "strict_date_optional_time||epoch_millis",
+                    "type": "date"
+                },
+                "_id": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "type": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "papier": {
+                    "type": "long"
+                },
+                "fichier_id": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                }
+            }
+        },
+        "id": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "source": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "seq": {
+            "type": "long"
+        }
+    }
+    },
+    "DR": {
+        "properties": {
+         "changes": {
+             "properties": {
+                 "rev": {
+                     "index": "not_analyzed",
+                     "type": "string"
+                 }
+             }
+         },
+         "doc": {
+             "properties": {
+                 "date_import": {
+                     "format": "strict_date_optional_time||epoch_millis",
+                     "type": "date"
+                 },
+                 "identifiant": {
+                     "index": "not_analyzed",
+                     "type": "string"
+                 },
+                 "libelle": {
+                     "index": "not_analyzed",
+                     "type": "string"
+                 },
+                 "_rev": {
+                     "index": "not_analyzed",
+                     "type": "string"
+                 },
+                 "visibilite": {
+                     "type": "long"
+                 },
+                 "date_depot": {
+                     "format": "strict_date_optional_time||epoch_millis",
+                     "type": "date"
+                 },
+                 "type": {
+                     "index": "not_analyzed",
+                     "type": "string"
+                 },
+                 "fichier_id": {
+                     "type": "string"
+                 },
+                 "pieces": {
+                     "properties": {
+                         "categorie": {
+                     "index": "not_analyzed",
+                             "type": "string"
+                         },
+                         "fichiers": {
+                     "index": "not_analyzed",
+                             "type": "string"
+                         },
+                         "identifiant": {
+                     "index": "not_analyzed",
+                             "type": "string"
+                         },
+                         "libelle": {
+                     "index": "not_analyzed",
+                             "type": "string"
+                         },
+                         "visibilite": {
+                     "index": "not_analyzed",
+                             "type": "long"
+                         },
+                         "date_depot": {
+                             "format": "strict_date_optional_time||epoch_millis",
+                             "type": "date"
+                         }
+                     }
+                 },
+                 "donnees": {
+                     "properties": {
+                         "tiers": {
+                     "index": "not_analyzed",
+                             "type": "string"
+                         },
+                         "categorie": {
+                     "index": "not_analyzed",
+                             "type": "string"
+                         },
+                         "produit": {
+                     "index": "not_analyzed",
+                             "type": "string"
+                         },
+                         "valeur": {
+                     "index": "not_analyzed",
+                             "type": "string"
+                         },
+                         "bailleur": {
+                     "index": "not_analyzed",
+                             "type": "string"
+                         },
+                         "complement": {
+                     "index": "not_analyzed",
+                             "type": "string"
+                         }
+                     }
+                 },
+                 "campagne": {
+                     "index": "not_analyzed",
+                     "type": "string"
+                 },
+                 "_id": {
+                     "index": "not_analyzed",
+                     "type": "string"
+                 },
+                 "papier": {
+                     "type": "long"
+                 }
+             }
+         },
+         "id": {
+             "index": "not_analyzed",
+             "type": "string"
+         },
+         "source": {
+             "index": "not_analyzed",
+             "type": "string"
+         },
+         "seq": {
+             "type": "long"
+         }
+     }
+    },
+    "DREV": {
+        "properties": {
+        "changes": {
+            "properties": {
+                "rev": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                }
+            }
+        },
+        "doc": {
+            "properties": {
+                "etape": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "chais": {
+                    "properties": {
+                        "partage": {
+                            "type": "boolean"
+                        },
+                        "code_postal": {
+                            "type": "string"
+                        },
+                        "commune": {
+                            "type": "string"
+                        },
+                        "adresse": {
+                            "type": "string"
+                        },
+                        "archive": {
+                            "type": "long"
+                        },
+                        "lon": {
+                    "index": "not_analyzed",
+                            "type": "string"
+                        },
+                        "attributs": {
+                            "properties": {
+                                "STOCKAGE_VRAC": {
+                    "index": "not_analyzed",
+                                    "type": "string"
+                                },
+                                "VINIFICATION": {
+                    "index": "not_analyzed",
+                                    "type": "string"
+                                },
+                                "PRESTATAIRE": {
+                    "index": "not_analyzed",
+                                    "type": "string"
+                                },
+                                "ELEVAGE": {
+                    "index": "not_analyzed",
+                                    "type": "string"
+                                },
+                                "STOCKAGE": {
+                    "index": "not_analyzed",
+                                    "type": "string"
+                                },
+                                "CONDITIONNEMENT": {
+                    "index": "not_analyzed",
+                                    "type": "string"
+                                },
+                                "STOCKAGE_VIN_CONDITIONNE": {
+                    "index": "not_analyzed",
+                                    "type": "string"
+                                },
+                                "DETENTEURVRAC": {
+                    "index": "not_analyzed",
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "nom": {
+                    "index": "not_analyzed",
+                            "type": "string"
+                        },
+                        "lat": {
+                    "index": "not_analyzed",
+                            "type": "string"
+                        }
+                    }
+                },
+                "identifiant": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "_rev": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "non_recoltant": {
+                    "type": "long"
+                },
+                "type": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "declaration": {
+                    "properties": {
+                        "detail_hash": {
+                            "type": "string"
+                        },
+                        "superficie_revendique": {
+                            "type": "double"
+                        },
+                        "libelle": {
+                    "index": "not_analyzed",
+                            "type": "string"
+                        },
+                        "volume_revendique_issu_recolte": {
+                            "type": "long"
+                        },
+                        "volume_revendique_total": {
+                            "type": "long"
+                        },
+                        "recolte": {
+                            "properties": {
+                                "usages_industriels_total": {
+                                    "type": "long"
+                                },
+                                "recolte_nette": {
+                                    "type": "long"
+                                },
+                                "vci_constitue": {
+                                    "type": "long"
+                                },
+                                "volume_total": {
+                                    "type": "long"
+                                },
+                                "superficie_total": {
+                                    "type": "double"
+                                },
+                                "volume_sur_place": {
+                                    "type": "long"
+                                }
+                            }
+                        },
+                        "volume_revendique_issu_vci": {
+                            "type": "long"
+                        },
+                        "produit_hash": {
+                            "type": "string"
+                        },
+                        "vci": {
+                            "properties": {
+                                "ajustement": {
+                                    "type": "long"
+                                },
+                                "substitution": {
+                                    "type": "long"
+                                },
+                                "stock_final": {
+                                    "type": "long"
+                                },
+                                "constitue": {
+                                    "type": "long"
+                                },
+                                "rafraichi": {
+                                    "type": "long"
+                                },
+                                "stock_precedent": {
+                                    "type": "double"
+                                },
+                                "complement": {
+                                    "type": "long"
+                                },
+                                "destruction": {
+                                    "type": "long"
+                                }
+                            }
+                        }
+                    }
+                },
+                "prelevements": {
+                    "type": "object"
+                },
+                "mouvements": {
+                    "properties": {
+                        "date": {
+                            "format": "strict_date_optional_time||epoch_millis",
+                            "type": "date"
+                        },
+                        "facturable": {
+                            "type": "long"
+                        },
+                        "facture": {
+                            "type": "long"
+                        },
+                        "mouvement_key": {
+                    "index": "not_analyzed",
+                            "type": "string"
+                        },
+                        "type_libelle": {
+                            "index": "not_analyzed",
+                            "type": "string"
+                        },
+                        "produit_hash": {
+                            "index": "not_analyzed",
+                            "type": "string"
+                        },
+                        "type_hash": {
+                            "index": "not_analyzed",
+                            "type": "string"
+                        },
+                        "tiers_key": {
+                    "index": "not_analyzed",
+                            "type": "string"
+                        },
+                        "date_version": {
+                            "format": "strict_date_optional_time||epoch_millis",
+                            "type": "date"
+                        },
+                        "produit_libelle": {
+                            "index": "not_analyzed",
+                            "type": "string"
+                        },
+                        "quantite": {
+                            "type": "long"
+                        }
+                    }
+                },
+                "non_conditionneur": {
+                    "type": "long"
+                },
+                "pieces": {
+                    "properties": {
+                        "identifiant": {
+                    "index": "not_analyzed",
+                            "type": "string"
+                        },
+                        "libelle": {
+                    "index": "not_analyzed",
+                            "type": "string"
+                        },
+                        "mime": {
+                    "index": "not_analyzed",
+                            "type": "string"
+                        },
+                        "visibilite": {
+                            "type": "long"
+                        },
+                        "date_depot": {
+                            "format": "strict_date_optional_time||epoch_millis",
+                            "type": "date"
+                        }
+                    }
+                },
+                "validation_odg": {
+                    "format": "strict_date_optional_time||epoch_millis",
+                    "type": "date"
+                },
+                "campagne": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "_id": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "papier": {
+                    "type": "long"
+                },
+                "declarant": {
+                    "properties": {
+                        "code_postal": {
+                            "index": "not_analyzed",
+                            "type": "string"
+                        },
+                        "telephone_bureau": {
+                    "index": "not_analyzed",
+                            "type": "string"
+                        },
+                        "telephone_mobile": {
+                    "index": "not_analyzed",
+                            "type": "string"
+                        },
+                        "commune": {
+                    "index": "not_analyzed",
+                            "type": "string"
+                        },
+                        "telephone": {
+                    "index": "not_analyzed",
+                            "type": "string"
+                        },
+                        "ppm": {
+                    "index": "not_analyzed",
+                            "type": "string"
+                        },
+                        "nom": {
+                            "type": "string"
+                        },
+                        "siret": {
+                    "index": "not_analyzed",
+                            "type": "string"
+                        },
+                        "cvi": {
+                            "index": "not_analyzed",
+                            "type": "string"
+                        },
+                        "adresse": {
+                            "type": "string"
+                        },
+                        "fax": {
+                    "index": "not_analyzed",
+                            "type": "string"
+                        },
+                        "famille": {
+                            "index": "not_analyzed",
+                            "type": "string"
+                        },
+                        "raison_sociale": {
+                            "type": "string"
+                        },
+                        "email": {
+                    "index": "not_analyzed",
+                            "type": "string"
+                        }
+                    }
+                },
+                "validation": {
+                    "format": "strict_date_optional_time||epoch_millis",
+                    "type": "date"
+                },
+                "envoi_oi": {
+                    "format": "strict_date_optional_time||epoch_millis",
+                    "type": "date"
+                }
+            }
+        },
+        "id": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "source": {
+            "index": "not_analyzed",
+            "type": "string"
+        },
+        "seq": {
+            "type": "long"
+        }
+    }
+    },
+    "HABILITATION": {
+         "properties": {
+             "changes": {
+                 "properties": {
+                     "rev": {
+                         "index": "not_analyzed",
+                         "type": "string"
+                     }
+                 }
+             },
+             "doc": {
+                 "properties": {
+                     "date": {
+                         "format": "strict_date_optional_time||epoch_millis",
+                         "type": "date"
+                     },
+                     "lecture_seule": {
+                         "type": "boolean"
+                     },
+                     "identifiant": {
+                         "index": "not_analyzed",
+                         "type": "string"
+                     },
+                     "_rev": {
+                         "index": "not_analyzed",
+                         "type": "string"
+                     },
+                     "_id": {
+                         "index": "not_analyzed",
+                         "type": "string"
+                     },
+                     "demandes": {
+                         "properties": {
+                             "date": {
+                                 "format": "strict_date_optional_time||epoch_millis",
+                                 "type": "date"
+                             },
+                             "produit": {
+                                 "type": "string"
+                             },
+                             "date_habilitation": {
+                                 "format": "strict_date_optional_time||epoch_millis",
+                                 "type": "date"
+                             },
+                             "libelle": {
+                         "index": "not_analyzed",
+                                 "type": "string"
+                             },
+                             "activites": {
+                         "index": "not_analyzed",
+                                 "type": "string"
+                             },
+                             "demande": {
+                         "index": "not_analyzed",
+                                 "type": "string"
+                             },
+                             "produit_hash": {
+                         "index": "not_analyzed",
+                                 "type": "string"
+                             },
+                             "commentaire": {
+                                 "type": "string"
+                             },
+                             "statut": {
+                         "index": "not_analyzed",
+                                 "type": "string"
+                             },
+                             "produit_libelle": {
+                         "index": "not_analyzed",
+                                 "type": "string"
+                             }
+                         }
+                     },
+                     "type": {
+                         "index": "not_analyzed",
+                         "type": "string"
+                     },
+                     "declaration": {
+                         "properties": {
+                             "libelle": {
+                                 "type": "string"
+                             },
+                             "activites": {
+                                 "properties": {
+                                     "ELABORATEUR": {
+                                         "properties": {
+                                             "date": {
+                                                 "format": "strict_date_optional_time||epoch_millis",
+                                                 "type": "date"
+                                             },
+                                             "commentaire": {
+                                                 "type": "string"
+                                             },
+                                             "statut": {
+                         "index": "not_analyzed",
+                                                 "type": "string"
+                                             }
+                                         }
+                                     },
+                                     "PRODUCTEUR": {
+                                         "properties": {
+                                             "date": {
+                                                 "format": "strict_date_optional_time||epoch_millis",
+                                                 "type": "date"
+                                             },
+                                             "commentaire": {
+                                                 "type": "string"
+                                             },
+                                             "statut": {
+                         "index": "not_analyzed",
+                                                 "type": "string"
+                                             }
+                                         }
+                                     },
+                                     "CONDITIONNEUR": {
+                                         "properties": {
+                                             "date": {
+                                                 "format": "strict_date_optional_time||epoch_millis",
+                                                 "type": "date"
+                                             },
+                                             "commentaire": {
+                                                 "type": "string"
+                                             },
+                                             "statut": {
+                         "index": "not_analyzed",
+                                                 "type": "string"
+                                             }
+                                         }
+                                     },
+                                     "VRAC": {
+                                         "properties": {
+                                             "date": {
+                                                 "format": "strict_date_optional_time||epoch_millis",
+                                                 "type": "date"
+                                             },
+                                             "commentaire": {
+                                                 "type": "string"
+                                             },
+                                             "statut": {
+                         "index": "not_analyzed",
+                                                 "type": "string"
+                                             }
+                                         }
+                                     },
+                                     "VENTE_A_LA_TIREUSE": {
+                                         "properties": {
+                                             "date": {
+                                                 "format": "strict_date_optional_time||epoch_millis",
+                                                 "type": "date"
+                                             },
+                                             "commentaire": {
+
+                                                 "type": "string"
+                                             },
+                                             "statut": {
+                         "index": "not_analyzed",
+                                                 "type": "string"
+                                             }
+                                         }
+                                     },
+                                     "ELEVEUR_DGC": {
+                                         "type": "object"
+                                     },
+                                     "PRODUCTEUR_MOUTS": {
+                                         "properties": {
+                                             "date": {
+                                                 "format": "strict_date_optional_time||epoch_millis",
+                                                 "type": "date"
+                                             },
+                                             "commentaire": {
+                                                 "type": "string"
+                                             },
+                                             "statut": {
+                         "index": "not_analyzed",
+                                                 "type": "string"
+                                             }
+                                         }
+                                     },
+                                     "VINIFICATEUR": {
+                                         "properties": {
+                                             "date": {
+                                                 "format": "strict_date_optional_time||epoch_millis",
+                                                 "type": "date"
+                                             },
+                                             "commentaire": {
+                                                 "type": "string"
+                                             },
+                                             "statut": {
+                         "index": "not_analyzed",
+                                                 "type": "string"
+                                             }
+                                         }
+                                     }
+                                 }
+                             },
+                             "produit_hash": {
+                         "index": "not_analyzed",
+                                 "type": "string"
+                             }
+                         }
+                     },
+                     "declarant": {
+                         "properties": {
+                             "code_postal": {
+                                 "index": "not_analyzed",
+                                 "type": "string"
+                             },
+                             "commune": {
+                                 "type": "string"
+                             },
+                             "cvi": {
+                                 "index": "not_analyzed",
+                                 "type": "string"
+                             },
+                             "adresse": {
+                                 "type": "string"
+                             },
+                             "telephone": {
+                         "index": "not_analyzed",
+                                 "type": "string"
+                             },
+                             "fax": {
+                         "index": "not_analyzed",
+                                 "type": "string"
+                             },
+                             "nom": {
+                                 "type": "string"
+                             },
+                             "raison_sociale": {
+                                 "type": "string"
+                             },
+                             "siret": {
+                         "index": "not_analyzed",
+                                 "type": "string"
+                             },
+                             "email": {
+                         "index": "not_analyzed",
+                                 "type": "string"
+                             }
+                         }
+                     },
+                     "historique": {
+                         "properties": {
+                             "date": {
+                                 "format": "strict_date_optional_time||epoch_millis",
+                                 "type": "date"
+                             },
+                             "description": {
+                         "index": "not_analyzed",
+                                 "type": "string"
+                             },
+                             "iddoc": {
+                         "index": "not_analyzed",
+                                 "type": "string"
+                             },
+                             "commentaire": {
+                         "index": "not_analyzed",
+                                 "type": "string"
+                             },
+                             "statut": {
+                         "index": "not_analyzed",
+                                 "type": "string"
+                             },
+                             "auteur": {
+                         "index": "not_analyzed",
+                                 "type": "string"
+                             }
+                         }
+                     }
+                 }
+             },
+             "id": {
+                 "index": "not_analyzed",
+                 "type": "string"
+             },
+             "source": {
+                 "index": "not_analyzed",
+                 "type": "string"
+             },
+             "seq": {
+                 "type": "long"
+             }
+         }
+    },
     "VRAC": {
         "properties": {
             "changes": {
@@ -2180,6 +3171,7 @@
                         "type": "double"
                     },
                     "delai_paiement": {
+                        "index": "not_analyzed",
                         "type": "string"
                     },
                     "delai_paiement_libelle": {
