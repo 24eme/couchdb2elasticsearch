@@ -3405,6 +3405,257 @@
                "index" : "not_analyzed"
             }
          }
+      },
+      "COMPTE": {
+          "properties": {
+              "changes": {
+                  "properties": {
+                      "rev": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      }
+                  }
+              },
+              "doc": {
+                  "properties": {
+                      "site_internet": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "nom_a_afficher": {
+                          "type": "string"
+                      },
+                      "commune": {
+                          "type": "string"
+                      },
+                      "en_alerte": {
+                          "type": "boolean"
+                      },
+                      "_rev": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "lon": {
+                          "type": "string"
+                      },
+                      "type": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "nom": {
+                          "type": "string"
+                      },
+                      "date_modification": {
+                          "format": "strict_date_optional_time||epoch_millis",
+                          "type": "date"
+                      },
+                      "groupes": {
+                          "properties": {
+                              "fonction": {
+                                  "type": "string"
+                              },
+                              "nom": {
+                                  "type": "string",
+                                  "index": "not_analyzed"
+                              }
+                          }
+                      },
+                      "adresse_complementaire": {
+                          "type": "string"
+                      },
+                      "compte_type": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "id_societe": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "etablissement_informations": {
+                          "properties": {
+                              "cvi": {
+                                  "index": "not_analyzed",
+                                  "type": "string"
+                              },
+                              "ppm": {
+                                  "index": "not_analyzed",
+                                  "type": "string"
+                              }
+                          }
+                      },
+                      "telephone_perso": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "fax": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "commentaire": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "prenom": {
+                          "type": "string"
+                      },
+                      "email": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "lat": {
+                          "type": "string"
+                      },
+                      "civilite": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "code_postal": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "telephone_bureau": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "telephone_mobile": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "num_interne": {
+                          "type": "string"
+                      },
+                      "origines": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "identifiant": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "societe_informations": {
+                          "properties": {
+                              "code_postal": {
+                                  "index": "not_analyzed",
+                                  "type": "string"
+                              },
+                              "adresse_complementaire": {
+                                  "type": "string"
+                              },
+                              "commune": {
+                                  "type": "string"
+                              },
+                              "adresse": {
+                                  "type": "string"
+                              },
+                              "telephone": {
+                                  "index": "not_analyzed",
+                                  "type": "string"
+                              },
+                              "fax": {
+                                  "index": "not_analyzed",
+                                  "type": "string"
+                              },
+                              "type": {
+                                  "index": "not_analyzed",
+                                  "type": "string"
+                              },
+                              "raison_sociale": {
+                                  "type": "string"
+                              },
+                              "siret": {
+                                  "type": "string"
+                              },
+                              "email": {
+                                  "index": "not_analyzed",
+                                  "type": "string"
+                              }
+                          }
+                      },
+                      "interpro": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "tags": {
+                          "properties": {
+                              "activite": {
+                                  "index": "not_analyzed",
+                                  "type": "string"
+                              },
+                              "groupes": {
+                                  "index": "not_analyzed",
+                                  "type": "string"
+                              },
+                              "produit": {
+                                  "index": "not_analyzed",
+                                  "type": "string"
+                              },
+                              "automatique": {
+                                  "index": "not_analyzed",
+                                  "type": "string"
+                              },
+                              "manuel": {
+                                  "index": "not_analyzed",
+                                  "type": "string"
+                              },
+                              "relations": {
+                                  "index": "not_analyzed",
+                                  "type": "string"
+                              },
+                              "statuts": {
+                                  "type": "string"
+                              },
+                              "export": {
+                                  "index": "not_analyzed",
+                                  "type": "string"
+                              }
+                          }
+                      },
+                      "insee": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "adresse": {
+                          "type": "string"
+                      },
+                      "fonction": {
+                          "type": "string"
+                      },
+                      "_id": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "mot_de_passe": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "region": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "statut": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "pays": {
+                          "type": "string"
+                      },
+                      "teledeclaration_active": {
+                          "type": "boolean"
+                      }
+                  }
+              },
+              "id": {
+                  "index": "not_analyzed",
+                  "type": "string"
+              },
+              "source": {
+                  "index": "not_analyzed",
+                  "type": "string"
+              },
+              "seq": {
+                  "type": "long"
+              }
+          }
       }
-   }
+  }
 }
