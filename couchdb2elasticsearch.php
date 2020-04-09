@@ -410,7 +410,7 @@ function updateIndexer($change) {
             $change->doc->demandes = $demandes;
         }
     }
-    if ($change->doc->type == "Parcellaire") {
+    if ($change->doc->type == "Parcellaire" || $change->doc->type == "ParcellaireAffectation" || $change->doc->type == "ParcellaireIntentionAffectation") {
         $declaration = array();
         foreach($change->doc->declaration as $key => $d) {
             foreach ($d->detail as $dkey => $adetail) {
