@@ -477,12 +477,38 @@ function updateIndexer($change) {
     if ($change->doc->type == "Parcellaire" || $change->doc->type == "ParcellaireAffectation" || $change->doc->type == "ParcellaireIntentionAffectation"
         || $change->doc->type == "ParcellaireIrrigue" || $change->doc->type == "ParcellaireIrrigable") {
         $declaration = array();
-        foreach($change->doc->declaration as $key => $d) {
-            foreach ($d->detail as $dkey => $adetail) {
-                $adetail->produit_hash = $key;
-                $adetail->detail_key = $dkey;
-                $adetail->produit_libelle = $d->libelle;
-                $declaration[] = $adetail;
+        if (isset($change->doc->declaration->certification)){
+            foreach($change->doc->declaration->certifications as $kc => $c) {
+                foreach($c->genres as $kg => $g) {
+                    foreach($g->appellations as $ka => $a) {
+                        foreach($a->mentions as $km => $m) {
+                            foreach($m->lieux as $kl => $l) {
+                                foreach($l->couleurs as $kcoul => $coul) {
+                                    foreach($coul->cepages as $kcep => $cep) {
+                                        $produit_hash = '/declaration/certifications/'.$kc.'/genres/'.$kg.'/appellations/'.$ka.'/mentions/'.$km.'/lieux/'.$kl.'/couleurs/'.$kcoul.'/cepages\/'.$kcep;
+                                        if (!isset($cep->details)) {
+                                            continue;
+                                        }
+                                        foreach($cep->details as $kd => $detail) {
+                                            $d->produit_hash = $produit_hash;
+                                            $d->detail_hash = $kd;
+                                            $declaration[] = $d;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }else {
+            foreach($change->doc->declaration as $key => $d) {
+                foreach ($d->detail as $dkey => $adetail) {
+                    $adetail->produit_hash = $key;
+                    $adetail->detail_key = $dkey;
+                    $adetail->produit_libelle = $d->libelle;
+                    $declaration[] = $adetail;
+                }
             }
         }
         $change->doc->declaration = $declaration;
