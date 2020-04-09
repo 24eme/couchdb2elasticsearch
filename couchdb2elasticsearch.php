@@ -505,6 +505,20 @@ function updateIndexer($change) {
             $change->doc->mouvements = $mouvements;
         }
     }
+    if ($change->doc->type == "Abonnement") {
+        if (isset($change->doc->mouvements)) {
+            $mouvements = array();
+            foreach($change->doc->mouvements as $tkey => $tiers) {
+                foreach($tiers as $mkey => $mvt) {
+                    $mvt->mouvement_key = $mkey;
+                    $mvt->tiers_key = $tkey;
+                    $mouvements[] = $mvt;
+                }
+            }
+            $change->doc->mouvements = $mouvements;
+        }
+    }
+
     emit($change->id, $change, strtoupper($change->doc->type));
 }
 function emit($id, $object, $type, $origin = null) {
