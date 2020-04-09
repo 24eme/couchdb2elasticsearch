@@ -433,9 +433,33 @@ function updateIndexer($change) {
         $declaration = array();
         foreach($change->doc->declaration as $pkey => $details) {
             foreach($details as $dkey => $d) {
-                $d->produit_hash = $pkey;
-                $d->detail_hash = $dkey;
-                $declaration[] = $d;
+                if (isset($d->genre)) {
+                    foreach($d->genres as $kg => $g) {
+                        foreach($g->appellations as $ka => $a) {
+                            foreach($a->mentions as $km => $m) {
+                                foreach($m->lieux as $kl => $l) {
+                                    foreach($l->couleurs as $kcoul => $coul) {
+                                        foreach($coul->cepages as $kcep => $cep) {
+                                            $produit_hash = '/declaration/certifications/'.$kc.'/genres/'.$kg.'/appellations/'.$ka.'/mentions/'.$km.'/lieux/'.$kl.'/couleurs/'.$kcoul.'/cepages\/'.$kcep;
+                                            if (!isset($cep->details)) {
+                                                continue;
+                                            }
+                                            foreach($cep->details as $kd => $detail) {
+                                                $d->produit_hash = $produit_hash;
+                                                $d->detail_hash = $kd;
+                                                $declaration[] = $d;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }else{
+                    $d->produit_hash = $pkey;
+                    $d->detail_hash = $dkey;
+                    $declaration[] = $d;
+                }
             }
         }
         if (isset($change->doc->mouvements)) {
