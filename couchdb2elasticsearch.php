@@ -180,6 +180,48 @@ function commitIndexer() {
     return true;
 }
 
+function emit($id, $object, $type, $origin = null) {
+    global $elastic_buffer, $verbose;
+    if ($verbose) echo "emit($id)\n";
+    if (!$origin) {
+        $origin = $id;
+    }
+    if (is_array($object)) {
+        $object["source"] = $origin;
+        $object["id"] = $id;
+    }else{
+        $object->source = $origin;
+        $object->id = $id;
+    }
+    $data_json = json_encode($object);
+    $header = '{ "index" : { "_type" : "'.$type.'", "_id" : "'.$id.'" } }';
+    $elastic_buffer[] = $header."\n".$data_json;
+}
+
+function deleteIndexer($change) {
+    global $elastic_url_db, $elastic_buffer, $verbose, $lock_file_path;
+    if ($verbose) echo "deleteIndexer (1) : ".$change->id."\n";
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $elastic_url_db."/_search?q=source:".urlencode($change->id));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $result = curl_exec($ch);
+    $json = json_decode($result);
+    curl_close($ch);
+    if (!$json || !isset($json->hits)) {
+        echo "ERROR elastic: ";
+        print_r($result);
+        echo "\nURL: ".$elastic_url_db."/_search?q=source:".$change->id."\n";
+        unlink($lock_file_path);
+        throw new Exception("bad response (search for delete) : network problem ?");
+    }
+    foreach($json->hits->hits as $hit) {
+        if (!isset($hit->source) || ($hit->source != $change->id)) {
+            continue;
+        }
+        $elastic_buffer[] = '{ "delete" : { "_type" : "'.$hit->doc->type.'", "_id" : "'.$hit->id.'" } }'."\n";
+    }
+}
+
 function updateIndexer($change) {
     global $verbose;
     if ($verbose) echo "updateIndexer (1) : ".$change->id."\n";
@@ -520,45 +562,4 @@ function updateIndexer($change) {
     }
 
     emit($change->id, $change, strtoupper($change->doc->type));
-}
-function emit($id, $object, $type, $origin = null) {
-    global $elastic_buffer, $verbose;
-    if ($verbose) echo "emit($id)\n";
-    if (!$origin) {
-        $origin = $id;
-    }
-    if (is_array($object)) {
-        $object["source"] = $origin;
-        $object["id"] = $id;
-    }else{
-        $object->source = $origin;
-        $object->id = $id;
-    }
-    $data_json = json_encode($object);
-    $header = '{ "index" : { "_type" : "'.$type.'", "_id" : "'.$id.'" } }';
-    $elastic_buffer[] = $header."\n".$data_json;
-}
-
-function deleteIndexer($change) {
-    global $elastic_url_db, $elastic_buffer, $verbose, $lock_file_path;
-    if ($verbose) echo "deleteIndexer (1) : ".$change->id."\n";
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $elastic_url_db."/_search?q=source:".urlencode($change->id));
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $result = curl_exec($ch);
-    $json = json_decode($result);
-    curl_close($ch);
-    if (!$json || !isset($json->hits)) {
-        echo "ERROR elastic: ";
-        print_r($result);
-        echo "\nURL: ".$elastic_url_db."/_search?q=source:".$change->id."\n";
-        unlink($lock_file_path);
-        throw new Exception("bad response (search for delete) : network problem ?");
-    }
-    foreach($json->hits->hits as $hit) {
-        if (!isset($hit->source) || ($hit->source != $change->id)) {
-            continue;
-        }
-        $elastic_buffer[] = '{ "delete" : { "_type" : "'.$hit->doc->type.'", "_id" : "'.$hit->id.'" } }'."\n";
-    }
 }
