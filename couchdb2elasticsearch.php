@@ -318,7 +318,10 @@ function updateIndexer($change) {
                 $mvt->couleur = $keys[13];
                 $mvt->cepage = $keys[15];
                 $mvt->id = $change->id."-".$id;
-                $mvt->date = substr($change->doc->periode, 0, 4).'-'.substr($change->doc->periode, 4, 2).'-15';
+                if (!isset($mvt->date)) {
+                    $periode = substr_replace('-', '', $change->doc->periode);
+                    $mvt->date = substr($periode, 0, 4).'-'.substr($periode, 4, 2).'-15';
+                }
                 $drmmvt["doc"]["mouvements"] = $mvt;
                 emit($change->id."-".$id, $drmmvt, "DRMMVT", $change->id);
             }
