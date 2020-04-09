@@ -252,11 +252,13 @@ function updateIndexer($change) {
         $change->doc->erreurs = $erreurs;
     }
     if ($change->doc->type == "Etablissement") {
-        $liaisons = array();
-        foreach ($change->doc->liaisons_operateurs as $k => $o) {
-            $liaisons[] = $o;
+        if (isset($change->doc->liaisons_operateurs)) {
+            $liaisons = array();
+            foreach ($change->doc->liaisons_operateurs as $k => $o) {
+                $liaisons[] = $o;
+            }
+            $change->doc->liaisons_operateurs = $liaisons;
         }
-        $change->doc->liaisons_operateurs = $liaisons;
     }
     if ($change->doc->type == "Societe") {
         $contacts = array();
