@@ -34,7 +34,7 @@ readSeqFile();
 
 while(1) {
 
-    $url = $couchdb_url_db.'/_changes?feed=continuous&include_docs=true&timeout=30000&limit='.($COMMITER * 3.5);
+    $url = $couchdb_url_db.'/_changes?feed=continuous&include_docs=true&timeout=30000&limit='.intval($COMMITER * 3.5);
     if (isset($last_seq) && $last_seq) {
         $url .= '&since='.$last_seq;
     }
