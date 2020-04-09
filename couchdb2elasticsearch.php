@@ -410,6 +410,18 @@ function updateIndexer($change) {
             $change->doc->demandes = $demandes;
         }
     }
+    if ($change->doc->type == "Parcellaire") {
+        $declaration = array();
+        foreach($change->doc->declaration as $key => $d) {
+            foreach ($d->detail as $dkey => $adetail) {
+                $adetail->produit_hash = $key;
+                $adetail->detail_key = $dkey;
+                $adetail->produit_libelle = $d->libelle;
+                $declaration[] = $adetail;
+            }
+        }
+        $change->doc->declaration = $declaration;
+    }
     if ($change->doc->type == "DRev") {
         unset($change->doc->documents);
         $declaration = array();
