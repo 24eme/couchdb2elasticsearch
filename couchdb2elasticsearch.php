@@ -598,5 +598,36 @@ function updateIndexer($change) {
         }
     }
 
+    if ($change->doc->type == "Tournee") {
+        $agents = array();
+        foreach($change->doc->agents as $k => $a) {
+            $agents[] = $a;
+        }
+        $change->doc->agents = $agents;
+        $degustateurs = $array();
+        foreach($change->doc->degustateurs as $type => $list) {
+            foreach($list as $compteid => $d) {
+                $d->compte_id = $compteid;
+                $d->degustateur_type = $type;
+                $degustateurs[] = $d;
+            }
+        }
+        $change->doc->degustateurs = $degustateurs;
+        $degustations = $array();
+        foreach($change->doc->degustations as $k => $d) {
+            $degustations[] = array('id' => $k, "doc" => $d);
+        }
+        $change->doc->degustations = $degustations;
+    }
+
+    if ($change->doc->type == "Degustation") {
+        $lots = array();
+        foreach($change->doc->lots as $k => $l) {
+            $l->key = $k;
+            $lots[] = $l;
+        }
+        $change->doc->lots = $lots;
+    }
+
     emit($change->id, $change, strtoupper($change->doc->type));
 }
