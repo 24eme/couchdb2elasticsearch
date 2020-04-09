@@ -304,10 +304,23 @@ function updateIndexer($change) {
     if ($change->doc->type == "DRM") {
         unset($change->doc->favoris);
         $mouvements = array();
-        $drmmvt = array("doc" => array("type" => "DRMMVT", "region" => $change->doc->region , "campagne" => $change->doc->campagne, "type_creation"=> $change->doc->type_creation,
-                        "periode" => $change->doc->periode, "teledeclare" => $change->doc->teledeclare, "version" => $change->doc->version, "numero_archive" => $change->doc->numero_archive,
-                        "declarant" => $change->doc->declarant, "identifiant" => $change->doc->identifiant, "mode_de_saisie" => $change->doc->mode_de_saisie, "valide" => $change->doc->valide,
+        $drmmvt = array("doc" => array("type" => "DRMMVT", "campagne" => $change->doc->campagne,
+                        "periode" => $change->doc->periode,  "version" => $change->doc->version,
+                        "declarant" => $change->doc->declarant, "identifiant" => $change->doc->identifiant,
+                        "mode_de_saisie" => $change->doc->mode_de_saisie, "valide" => $change->doc->valide,
                         "mouvements" => null, "drmid" => $change->doc->_id));
+        if (isset($change->doc->region)) {
+            $drmmvt["region"]  = $change->doc->region;
+        }
+        if (isset($change->doc->type_creation)) {
+            $drmmvt["type_creation"] = $change->doc->type_creation;
+        }
+        if (isset($change->doc->teledeclare)) {
+            $drmmvt["teledeclare"]  = $change->doc->teledeclare;
+        }
+        if (isset($change->doc->numero_archive)) {
+            $drmmvt["numero_archive"]  = $change->doc->numero_archive;
+        }
         foreach($change->doc->mouvements as $tiers => $t_mouvements) {
             foreach($t_mouvements as $id => $mvt) {
                 $mouvements[] = $mvt;
@@ -329,8 +342,10 @@ function updateIndexer($change) {
             }
         }
         $mvt = array();
-        $mvt['region'] = $change->doc->region;
-        $mvt['region_destinataire'] = $change->doc->region;
+        if (isset($change->doc->region)) {
+            $mvt['region'] = $change->doc->region;
+            $mvt['region_destinataire'] = $change->doc->region;
+        }
         $mvt['date'] = substr($change->doc->periode, 0, 4).'-'.substr($change->doc->periode, 4, 2).'-15';
         $mvt['date_version'] = $change->doc->valide->date_saisie;
         foreach($change->doc->declaration->certifications as $kc => $c) {
@@ -347,7 +362,9 @@ function updateIndexer($change) {
                                     foreach($cep->details as $kd => $detail) {
                                         $mvt['categorie'] = 'stocks';
                                         $mvt['produit_hash'] = $produit_hash;
-                                        $mvt['produit_libelle'] = $detail->produit_libelle;
+                                        if (isset($detail->produit_libelle)) {
+                                            $mvt['produit_libelle'] = $detail->produit_libelle;
+                                        }
                                         $mvt['type_drm'] = 'SUSPENDU';
                                         $mvt['type_drm_libelle'] = 'Suspendu';
                                         $mvt['vrac_numero'] = null;
@@ -363,7 +380,7 @@ function updateIndexer($change) {
                                         $mvt['cepage'] =  $kcep;
                                         $mvt['cvo'] = $detail->cvo->taux;
                                         foreach(array('total', 'total_debut_mois') as $s) {
-                                            $mvt['id'] = 'DRM-'.$change->doc->identifiant.'-'.$change->doc->periode.'-'.md5($detail->produit_libelle.' '.$s);
+                                            $mvt['id'] = 'DRM-'.$change->doc->identifiant.'-'.$change->doc->periode.'-'.md5($produit_hash.' '.$kd.' '.$s);
                                             $mvt['type_hash'] = $s;
                                             $mvt['type_libelle'] = $s;
                                             $mvt['volume'] = $detail->{$s};
