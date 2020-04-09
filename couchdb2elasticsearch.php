@@ -512,41 +512,52 @@ function updateIndexer($change) {
             }
         }
         $change->doc->declaration = $declaration;
+        if (isset($change->doc->acheteurs)){
+            $acheteurs = array();
+            foreach($change->doc->acheteurs as $type => $as) {
+                foreach ($as as $cvi => $a) {
+                    $acheteurs[] = $a;
+                }
+            }
+            $change->doc->acheteurs = $acheteurs;
+        }
+
     }
     if ($change->doc->type == "DRev") {
         unset($change->doc->documents);
         $declaration = array();
-        foreach($change->doc->declaration as $pkey => $details) {
-            foreach($details as $dkey => $d) {
-                if (isset($d->genre)) {
-                    foreach($d->genres as $kg => $g) {
-                        foreach($g->appellations as $ka => $a) {
-                            foreach($a->mentions as $km => $m) {
-                                foreach($m->lieux as $kl => $l) {
-                                    foreach($l->couleurs as $kcoul => $coul) {
-                                        foreach($coul->cepages as $kcep => $cep) {
-                                            $produit_hash = '/declaration/certifications/'.$kc.'/genres/'.$kg.'/appellations/'.$ka.'/mentions/'.$km.'/lieux/'.$kl.'/couleurs/'.$kcoul.'/cepages\/'.$kcep;
-                                            if (!isset($cep->details)) {
-                                                continue;
-                                            }
-                                            foreach($cep->details as $kd => $detail) {
-                                                $d->produit_hash = $produit_hash;
-                                                $d->detail_hash = $kd;
-                                                $declaration[] = $d;
-                                            }
+        if (isset($change->doc->declaration->certification)){
+            foreach($change->doc->declaration->certifications as $kc => $c) {
+                foreach($c->genres as $kg => $g) {
+                    foreach($g->appellations as $ka => $a) {
+                        foreach($a->mentions as $km => $m) {
+                            foreach($m->lieux as $kl => $l) {
+                                foreach($l->couleurs as $kcoul => $coul) {
+                                    foreach($coul->cepages as $kcep => $cep) {
+                                        $produit_hash = '/declaration/certifications/'.$kc.'/genres/'.$kg.'/appellations/'.$ka.'/mentions/'.$km.'/lieux/'.$kl.'/couleurs/'.$kcoul.'/cepages\/'.$kcep;
+                                        if (!isset($cep->details)) {
+                                            continue;
+                                        }
+                                        foreach($cep->details as $kd => $detail) {
+                                            $d->produit_hash = $produit_hash;
+                                            $d->detail_hash = $kd;
+                                            $declaration[] = $d;
                                         }
                                     }
                                 }
                             }
                         }
                     }
-                }else{
-                    $d->produit_hash = $pkey;
-                    $d->detail_hash = $dkey;
-                    $declaration[] = $d;
                 }
             }
+        }else {
+            foreach($change->doc->declaration as $pkey => $details) {
+                $d->produit_hash = $pkey;
+                $d->detail_hash = $dkey;
+                $declaration[] = $d;
+            }
         }
+        $change->doc->declaration = $declaration;
         if (isset($change->doc->mouvements)) {
             $mouvements = array();
             foreach($change->doc->mouvements as $tkey => $tiers) {
