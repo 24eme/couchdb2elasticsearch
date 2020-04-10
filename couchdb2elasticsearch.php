@@ -608,7 +608,7 @@ function updateIndexer($change) {
             }
         }
         $change->doc->degustateurs = $degustateurs;
-        $degustations = $array();
+        $degustations = array();
         foreach($change->doc->degustations as $k => $d) {
             $degustations[] = array('id' => $k, "doc" => $d);
         }
