@@ -527,24 +527,17 @@ function updateIndexer($change) {
         unset($change->doc->documents);
         $declaration = array();
         if (isset($change->doc->declaration->certification)){
-            foreach($change->doc->declaration->certifications as $kc => $c) {
-                foreach($c->genres as $kg => $g) {
-                    foreach($g->appellations as $ka => $a) {
-                        foreach($a->mentions as $km => $m) {
-                            foreach($m->lieux as $kl => $l) {
-                                foreach($l->couleurs as $kcoul => $coul) {
-                                    foreach($coul->cepages as $kcep => $cep) {
-                                        $produit_hash = '/declaration/certifications/'.$kc.'/genres/'.$kg.'/appellations/'.$ka.'/mentions/'.$km.'/lieux/'.$kl.'/couleurs/'.$kcoul.'/cepages\/'.$kcep;
-                                        if (!isset($cep->details)) {
-                                            continue;
-                                        }
-                                        foreach($cep->details as $kd => $detail) {
-                                            $d->produit_hash = $produit_hash;
-                                            $d->detail_hash = $kd;
-                                            $declaration[] = $d;
-                                        }
-                                    }
+            foreach($change->doc->declaration->certification as $kg => $genre) {
+                if (preg_match('/^genre/', $kg)) foreach($genre as $ka => $appellation) {
+                    if (preg_match('/^appellation/', $ka)) foreach($appellation as $km => $mention) {
+                        if (preg_match('/^mention/', $km)) foreach($mention as $kl => $lieu) {
+                            if (preg_match('/^mention/', $kl)) foreach($lieux as $kc => $couleur) {
+                                $vci = array();
+                                foreach($couleurs->vci as $k => $vci) {
+                                    $vci[] = $vci;
                                 }
+                                $couleur->vci = $vci;
+                                $declaration[] = $couleur;
                             }
                         }
                     }
