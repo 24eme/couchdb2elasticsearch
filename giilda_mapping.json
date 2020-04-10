@@ -485,6 +485,9 @@
                         "facture" : {
                            "type" : "long"
                         },
+                        "tva" : {
+                           "type" : "double"
+                        },
                         "type_libelle" : {
                            "index" : "not_analyzed",
                            "type" : "string"
