@@ -545,9 +545,11 @@ function updateIndexer($change) {
             }
         }else {
             foreach($change->doc->declaration as $pkey => $details) {
-                $d->produit_hash = $pkey;
-                $d->detail_hash = $dkey;
-                $declaration[] = $d;
+                foreach($details as $dkey => $d) {
+                    $d->produit_hash = $pkey;
+                    $d->detail_hash = $pkey;
+                    $declaration[] = $d;
+                }
             }
         }
         $change->doc->declaration = $declaration;
