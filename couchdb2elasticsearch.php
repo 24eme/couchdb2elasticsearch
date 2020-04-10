@@ -597,7 +597,7 @@ function updateIndexer($change) {
             $agents[] = $a;
         }
         $change->doc->agents = $agents;
-        $degustateurs = $array();
+        $degustateurs = array();
         foreach($change->doc->degustateurs as $type => $list) {
             foreach($list as $compteid => $d) {
                 $d->compte_id = $compteid;
