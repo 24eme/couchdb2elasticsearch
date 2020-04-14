@@ -488,7 +488,7 @@ function updateIndexer($change) {
                 if (preg_match('/^genre/', $kg)) foreach($genre as $ka => $appellation) {
                     if (preg_match('/^appellation/', $ka)) foreach($appellation as $km => $mention) {
                         if (preg_match('/^mention/', $km)) foreach($mention as $kl => $lieu) {
-                            if (preg_match('/^lieu/', $kl)) foreach($lieux as $kcoul => $couleurs) {
+                            if (preg_match('/^lieu/', $kl)) foreach($lieu as $kcoul => $couleurs) {
                                 if (preg_match('/^couleur/', $kcoul)) foreach($couleurs as $kcep => $cepage) {
                                     if (preg_match('/^cepage/', $kcep)) {
                                         $produit_hash = '/declaration/certification/'.$kg.'/'.$ka.'/'.$km.'/'.$kl.'/'.$kcoul.'/'.$kcep;
