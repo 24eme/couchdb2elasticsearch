@@ -531,15 +531,15 @@ function updateIndexer($change) {
                 if (preg_match('/^genre/', $kg)) foreach($genre as $ka => $appellation) {
                     if (preg_match('/^appellation/', $ka)) foreach($appellation as $km => $mention) {
                         if (preg_match('/^mention/', $km)) foreach($mention as $kl => $lieu) {
-                            if (preg_match('/^lieu/', $kl)) foreach($lieux as $kcoul => $couleurs) {
+                            if (preg_match('/^lieu/', $kl)) foreach($lieu as $kcoul => $couleur) {
                                 if (preg_match('/^couleur/', $kcoul)) {
                                     $vci = array();
-                                    foreach($couleurs->vci as $k => $vci) {
+                                    foreach($couleur->vci as $k => $vci) {
                                         $vci[] = $vci;
                                     }
-                                    $couleurs->vci = $vci;
-                                    $couleurs->produit_hash = '/declaration/certification/'.$kg.'/'.$ka.'/'.$km.'/'.$kl.'/'.$kcoul;
-                                    $declaration[] = $couleurs;
+                                    $couleur->vci = $vci;
+                                    $couleur->produit_hash = '/declaration/certification/'.$kg.'/'.$ka.'/'.$km.'/'.$kl.'/'.$kcoul;
+                                    $declaration[] = $couleur;
                                 }
                             }
                         }
