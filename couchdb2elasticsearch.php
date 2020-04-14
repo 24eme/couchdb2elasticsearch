@@ -638,5 +638,14 @@ function updateIndexer($change) {
         unset($change->doc->documents);
     }
 
+    if ($change->doc->type == 'Constats') {
+        $constats = array();
+        foreach($change->doc->constats as $k => $c) {
+            $c->constat_key = $k;
+            $constats[] = $c;
+        }
+        $change->doc->constats = $constats;
+    }
+
     emit($change->id, $change, strtoupper($change->doc->type));
 }
