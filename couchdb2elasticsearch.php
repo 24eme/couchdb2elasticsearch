@@ -620,9 +620,8 @@ function updateIndexer($change) {
         $change->doc->degustations = $degustations;
         $rendezvous = array();
         foreach($change->doc->rendezvous as $k => $r) {
-                $r->rendezvous_key = $k;
-                $rendezvous[] = $r;
-            }
+            $r->rendezvous_key = $k;
+            $rendezvous[] = $r;
         }
         $change->doc->rendezvous = $rendezvous;
     }
