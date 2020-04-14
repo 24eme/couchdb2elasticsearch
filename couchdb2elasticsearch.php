@@ -316,6 +316,9 @@ function updateIndexer($change) {
         }
         $change->doc->etablissements = $etablissements;
     }
+    if ($change->doc->type == "Compte") {
+        unset($change->doc->infos);
+    }
     if ($change->doc->type == "MouvementsFacture") {
         $mouvements = array();
         foreach($change->doc->mouvements as $tiers => $t_mouvements) {
