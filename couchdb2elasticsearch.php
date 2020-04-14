@@ -627,5 +627,9 @@ function updateIndexer($change) {
         $change->doc->lots = $lots;
     }
 
+    if ($change->doc->type == "Tirage") {
+        unset($change->doc->documents);
+    }
+
     emit($change->id, $change, strtoupper($change->doc->type));
 }
