@@ -30,8 +30,18 @@ while($changes && ($l = fgets($changes))) {
         continue;
     }
     $l = preg_replace('/,$/', '', $l);
+    if (preg_match('/^(."results":.|.|"last_seq":[0-9]*.)$/', $l)) {
+        continue;
+    }
+
     //Decode le json fourni par couchdb
     $change = json_decode($l);
+    if (isset($change->id) && preg_match('/^_/', $change->id)) {
+        continue;
+    }
+    if (isset($change->id) && preg_match('/^(CONFIGURATION|CURRENT|COMPTABILITE)/', $change->id)) {
+        continue;
+    }
     if (!$change || !$change->id) {
         echo "ERROR : pb json : $l\n";
         continue;
