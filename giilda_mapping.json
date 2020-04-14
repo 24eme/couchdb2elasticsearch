@@ -3659,6 +3659,278 @@
                   "type": "long"
               }
           }
+      },
+      "DEGUSTATION": {
+          "properties": {
+              "changes": {
+                  "properties": {
+                      "rev": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      }
+                  }
+              },
+              "doc": {
+                  "properties": {
+                      "reports": {
+                                  "type": "object"
+                      },
+                      "agent": {
+                          "type": "string"
+                      },
+                      "commune": {
+                          "type": "string"
+                      },
+                      "libelle": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "millesime": {
+                          "type": "long"
+                      },
+                      "_rev": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "lon": {
+                          "type": "string"
+                      },
+                      "organisme": {
+                          "type": "string"
+                      },
+                      "type": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "prelevements": {
+                          "properties": {
+                              "motif_non_prelevement": {
+                                  "type": "string"
+                              },
+                              "hash_produit": {
+                                  "type": "string"
+                              },
+                              "notes": {
+                                  "properties": {
+                                      "TYPICITE": {
+                                          "properties": {
+                                              "note": {
+                                                  "type": "string"
+                                              },
+                                              "defauts": {
+                                                  "type": "string"
+                                              }
+                                          }
+                                      },
+                                      "MATIERE": {
+                                          "properties": {
+                                              "note": {
+                                                  "type": "string"
+                                              },
+                                              "defauts": {
+                                                  "type": "string"
+                                              }
+                                          }
+                                      },
+                                      "QUALITE_TECHNIQUE": {
+                                          "properties": {
+                                              "note": {
+                                                  "type": "string"
+                                              },
+                                              "defauts": {
+                                                  "type": "string"
+                                              }
+                                          }
+                                      },
+                                      "CONCENTRATION": {
+                                          "properties": {
+                                              "note": {
+                                                  "type": "string"
+                                              },
+                                              "defauts": {
+                                                  "type": "string"
+                                              }
+                                          }
+                                      },
+                                      "EQUILIBRE": {
+                                          "properties": {
+                                              "note": {
+                                                  "type": "string"
+                                              },
+                                              "defauts": {
+                                                  "type": "string"
+                                              }
+                                          }
+                                      }
+                                  }
+                              },
+                              "appreciations": {
+                                  "type": "string"
+                              },
+                              "visite_heure": {
+                                  "type": "string"
+                              },
+                              "volume_revendique": {
+                                  "type": "double"
+                              },
+                              "libelle": {
+                                  "type": "string"
+                              },
+                              "vtsgn": {
+                                  "type": "string"
+                              },
+                              "visite_date": {
+                                  "format": "strict_date_optional_time||epoch_millis",
+                                  "type": "date"
+                              },
+                              "courrier_envoye": {
+                                  "format": "strict_date_optional_time||epoch_millis",
+                                  "type": "date"
+                              },
+                              "cuve": {
+                                  "index": "not_analyzed",
+                                  "type": "string"
+                              },
+                              "preleve": {
+                                  "type": "double"
+                              },
+                              "anonymat_prelevement": {
+                                  "type": "long"
+                              },
+                              "libelle_produit": {
+                                  "index": "not_analyzed",
+                                  "type": "string"
+                              },
+                              "anonymat_prelevement_complet": {
+                                  "index": "not_analyzed",
+                                  "type": "string"
+                              },
+                              "commission": {
+                                  "type": "long"
+                              },
+                              "type_courrier": {
+                                  "index": "not_analyzed",
+                                  "type": "string"
+                              },
+                              "anonymat_degustation": {
+                                  "type": "long"
+                              }
+                          }
+                      },
+                      "reporte": {
+                          "format": "strict_date_optional_time||epoch_millis",
+                          "type": "date"
+                      },
+                      "drev": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "pieces": {
+                          "properties": {
+                              "identifiant": {
+                                  "index": "not_analyzed","type": "string"},"libelle": {
+                                  "index": "not_analyzed","type": "string"},"mime": {
+                                  "index": "not_analyzed","type": "string"},"visibilite": {
+                                  "type": "long"},"date_depot": {
+                                  "format": "strict_date_optional_time||epoch_millis","type": "date"},"source": {
+                                  "type": "string"}}},
+                      "cvi": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "appellation": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "raison_sociale": {
+                          "type": "string"
+                      },
+                      "email": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "lat": {
+                          "type": "string"
+                      },
+                      "code_postal": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "motif_non_prelevement": {
+                          "type": "string"
+                      },
+                      "telephone_bureau": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "heure": {
+                          "type": "string"
+                      },
+                      "telephone_mobile": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "identifiant": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "date_prelevement": {
+                          "format": "strict_date_optional_time||epoch_millis",
+                          "type": "date"
+                      },
+                      "appellation_complement": {
+                          "type": "string"
+                      },
+                      "date_demande": {
+                          "format": "strict_date_optional_time||epoch_millis",
+                          "type": "date"
+                      },
+                      "lots": {
+                          "properties": {
+                              "hash_produit": {
+                                  "type": "string"},"libelle_produit": {
+                                  "type": "string"},"nb": {
+                                  "type": "long"},"volume_revendique": {
+                                  "type": "double"},"libelle": {
+                                  "type": "string"},"vtsgn": {
+                                  "type": "string"},"prelevement": {
+                                  "type": "long"},"key": {
+                                  "type": "string"}}},
+                      "appellation_libelle": {
+                          "type": "string"
+                      },
+                      "telephone_prive": {
+                          "type": "string"
+                      },
+                      "adresse": {
+                          "type": "string"
+                      },
+                      "_id": {
+                          "index": "not_analyzed",
+                          "type": "string"
+                      },
+                      "position": {
+                          "type": "long"
+                      },
+                      "date_degustation": {
+                          "format": "strict_date_optional_time||epoch_millis",
+                          "type": "date"
+                      }
+                  }
+              },
+              "id": {
+                  "index": "not_analyzed",
+                  "type": "string"
+              },
+              "source": {
+                  "index": "not_analyzed",
+                  "type": "string"
+              },
+              "seq": {
+                  "type": "long"
+              }
+          }
+
       }
   }
 }
