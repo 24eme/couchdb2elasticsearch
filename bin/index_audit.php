@@ -50,15 +50,15 @@ while($changes && ($l = fgets($changes))) {
     $json = query($change, $test_deleted);
     $cpt++;
     if ($test_deleted && isset($json->hits) && $json->hits && isset($json->hits->total) && $json->hits->total) {
-        echo "PB: ".$change->id." should be deleted\n";
+        echo "PB: ".$change->id." should be deleted (".$change->seq.")\n";
         $errors++;
     }elseif(!$test_deleted && (!isset($json->hits) || !$json->hits || !isset($json->hits->total) || !$json->hits->total)) {
-        echo "PB: ".$change->id." should be indexed\n";
+        echo "PB: ".$change->id." should be indexed (".$change->seq.")\n";
         $errors++;
     }elseif($verbose){
         echo "OK: ".$change->id;
         echo ($test_deleted) ? ' DELETED' : '';
-        echo "\n";
+        echo " (".$change->seq.")\n";
     }
 }
 echo "Errors : ".$errors."/".$cpt."\n";
