@@ -200,7 +200,7 @@ function emit($id, $object, $type, $origin = null) {
 
 function deleteIndexer($change) {
     global $elastic_url_db, $elastic_buffer, $verbose, $lock_file_path;
-    if (preg_match('/\\/', $change->id)) {
+    if (strpos($change->id, '\\') !== false) {
         return;
     }
     if ($verbose) echo "deleteIndexer (1) : ".$change->id."\n";
