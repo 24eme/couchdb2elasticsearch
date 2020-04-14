@@ -616,6 +616,13 @@ function updateIndexer($change) {
             $degustations[] = array('id' => $k, "doc" => $d);
         }
         $change->doc->degustations = $degustations;
+        $rendezvous = array();
+        foreach($change->doc->rendezvous as $k => $r) {
+                $r->rendezvous_key = $k;
+                $rendezvous[] = $r;
+            }
+        }
+        $change->doc->rendezvous = $rendezvous;
     }
 
     if ($change->doc->type == "Degustation") {
