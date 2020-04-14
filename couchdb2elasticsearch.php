@@ -533,11 +533,13 @@ function updateIndexer($change) {
                         if (preg_match('/^mention/', $km)) foreach($mention as $kl => $lieu) {
                             if (preg_match('/^lieu/', $kl)) foreach($lieu as $kcoul => $couleur) {
                                 if (preg_match('/^couleur/', $kcoul)) {
-                                    $vci = array();
-                                    foreach($couleur->vci as $k => $vci) {
-                                        $vci[] = $vci;
+                                    if (isset($couleur->vci)) {
+                                        $vci = array();
+                                        foreach($couleur->vci as $k => $vci) {
+                                            $vci[] = $vci;
+                                        }
+                                        $couleur->vci = $vci;
                                     }
-                                    $couleur->vci = $vci;
                                     $couleur->produit_hash = '/declaration/certification/'.$kg.'/'.$ka.'/'.$km.'/'.$kl.'/'.$kcoul;
                                     $declaration[] = $couleur;
                                 }
