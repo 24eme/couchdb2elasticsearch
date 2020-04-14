@@ -3605,9 +3605,30 @@
                                   "type": "string"
                               },
                               "statuts": {
+                                  "index": "not_analyzed",
                                   "type": "string"
                               },
                               "export": {
+                                  "index": "not_analyzed",
+                                  "type": "string"
+                              },
+                              "produits": {
+                                  "index": "not_analyzed",
+                                  "type": "string"
+                              },
+                              "manuels": {
+                                  "index": "not_analyzed",
+                                  "type": "string"
+                              },
+                              "attributs": {
+                                  "index": "not_analyzed",
+                                  "type": "string"
+                              },
+                              "automatiques": {
+                                  "index": "not_analyzed",
+                                  "type": "string"
+                              },
+                              "syndicats": {
                                   "index": "not_analyzed",
                                   "type": "string"
                               }
