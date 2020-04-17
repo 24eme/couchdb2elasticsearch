@@ -29,12 +29,14 @@ touch($lock_file_path);
 
 $elastic_buffer = array();
 $noactivity = 0;
+$COMMIT_TIME_MS = 500; // on s'assure de commiter les écriture toutes les demi secondes
+$NO_ACTIVITY_LIMIT = 330; // on arrête au bout de 2min45 => 165 => 330 commits
 $error_nb = 0;
 readSeqFile();
 
 while(1) {
 
-    $url = $couchdb_url_db.'/_changes?feed=continuous&include_docs=true&timeout=30000&limit='.intval($COMMITER * 3.5);
+    $url = $couchdb_url_db.'/_changes?feed=continuous&include_docs=true&timeout='.$COMMIT_TIME_MS.'&limit='.intval($COMMITER * 3.5);
     if (isset($last_seq) && $last_seq) {
         $url .= '&since='.$last_seq;
     }
@@ -92,7 +94,7 @@ while(1) {
     if (!$cpt) {
         $noactivity++;
         if ($verbose) echo "NO activity: $noactivity\n";
-        if (!($noactivity % 10)) {
+        if (!($noactivity % $NO_ACTIVITY_LIMIT)) {
             break;
         }
         continue;
