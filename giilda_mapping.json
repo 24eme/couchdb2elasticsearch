@@ -3,7 +3,8 @@
       "LOCK" : {
          "properties" : {
             "seq" : {
-               "type" : "long"
+               "type" : "string",
+               "index" : "not_analyzed"
             },
             "source" : {
                "type" : "string",
@@ -288,7 +289,9 @@
                "type" : "string"
             },
             "seq" : {
-               "type" : "long"
+               "type" : "string",
+               "index" : "not_analyzed"
+
             },
             "source" : {
                "type" : "string",
@@ -807,7 +810,8 @@
                "index" : "not_analyzed"
             },
             "seq" : {
-               "type" : "long"
+               "type" : "string",
+               "index" : "not_analyzed"
             },
             "source" : {
                "index" : "not_analyzed",
@@ -822,7 +826,8 @@
                "index" : "not_analyzed"
             },
             "seq" : {
-               "type" : "long"
+               "type" : "string",
+               "index" : "not_analyzed"
             },
             "id" : {
                "index" : "not_analyzed",
@@ -1526,7 +1531,8 @@
                }
             },
             "seq" : {
-               "type" : "long"
+               "type" : "string",
+               "index" : "not_analyzed"
             },
             "source" : {
                "index" : "not_analyzed",
@@ -1723,7 +1729,8 @@
                }
             },
             "seq" : {
-               "type" : "long"
+               "type" : "string",
+               "index" : "not_analyzed"
             },
             "source" : {
                "type" : "string",
@@ -1738,7 +1745,8 @@
       "SV12" : {
          "properties" : {
             "seq" : {
-               "type" : "long"
+               "type" : "string",
+               "index" : "not_analyzed"
             },
             "source" : {
                "type" : "string",
@@ -1981,7 +1989,8 @@
                "index" : "not_analyzed"
             },
             "seq" : {
-               "type" : "long"
+               "type" : "string",
+               "index" : "not_analyzed"
             },
             "doc" : {
                "properties" : {
@@ -2051,7 +2060,8 @@
                "index" : "not_analyzed"
             },
             "seq" : {
-               "type" : "long"
+               "type" : "string",
+               "index" : "not_analyzed"
             },
             "doc" : {
                "properties" : {
@@ -2224,7 +2234,8 @@
                "index" : "not_analyzed"
             },
             "seq" : {
-               "type" : "long"
+               "type" : "string",
+               "index" : "not_analyzed"
             }
          }
       },
@@ -2345,7 +2356,8 @@
                "type" : "string"
             },
             "seq" : {
-               "type" : "long"
+               "type" : "string",
+               "index" : "not_analyzed"
             },
             "source" : {
                "index" : "not_analyzed",
@@ -2460,7 +2472,8 @@
                "type" : "string"
             },
             "seq" : {
-               "type" : "long"
+               "type" : "string",
+               "index" : "not_analyzed"
             },
             "id" : {
                "index" : "not_analyzed",
@@ -2475,7 +2488,8 @@
                "type" : "string"
             },
             "seq" : {
-               "type" : "long"
+               "type" : "string",
+               "index" : "not_analyzed"
             },
             "source" : {
                "index" : "not_analyzed",
@@ -3121,7 +3135,8 @@
                "index" : "not_analyzed"
             },
             "seq" : {
-               "type" : "long"
+               "type" : "string",
+               "index" : "not_analyzed"
             }
          }
       },
@@ -3401,7 +3416,8 @@
                "index" : "not_analyzed"
             },
             "seq" : {
-               "type" : "long"
+               "type" : "string",
+               "index" : "not_analyzed"
             },
             "id" : {
                "type" : "string",
