@@ -3693,7 +3693,8 @@
                   "type": "string"
               },
               "seq": {
-                  "type": "long"
+                  "index": "not_analyzed",
+                  "type": "string"
               }
           }
       },
@@ -3964,7 +3965,8 @@
                   "type": "string"
               },
               "seq": {
-                  "type": "long"
+                  "index": "not_analyzed",
+                  "type": "string"
               }
           }
 
