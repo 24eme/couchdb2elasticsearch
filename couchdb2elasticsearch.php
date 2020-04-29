@@ -228,13 +228,16 @@ function deleteIndexer($change) {
 }
 
 function updateIndexer($change) {
-    global $verbose;
+    global $verbose, $doc_type_exclusion;
     if ($verbose) echo "updateIndexer (1) : ".$change->id."\n";
     if (!isset($change->doc->type)) {
         echo "ERROR: no type for : ";
         print_r($change);
         echo "\n";
         return ;
+    }
+    if (is_array($doc_type_exclusion) && in_array($change->doc->type, $doc_type_exclusion)) {
+	return;
     }
     if ($change->doc->type == "Configuration") {
         return ;

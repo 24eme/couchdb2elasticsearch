@@ -4,4 +4,5 @@ $couchdb_url_db = "http://localhost:5984/giilda";
 $elastic_url_db = "http://localhost:9200/giilda";
 $seq_file_path = "/tmp/giilda.seq";
 $COMMITER = 100;
+$doc_type_exclusion = array("Configuration", "Current");
 //$verbose = 1;
