@@ -219,11 +219,13 @@ function deleteIndexer($change) {
         unlink($lock_file_path);
         throw new Exception("bad response (search for delete) : network problem ?");
     }
+
     foreach($json->hits->hits as $hit) {
-        if (!isset($hit->source) || ($hit->source != $change->id)) {
+        if (!isset($hit->_source->source) || ($hit->_source->source != $change->id)) {
+            if ($verbose) echo "deleteIndexer (1) : ".$change->id." source does not match (".$hit->_source->source.")\n";
             continue;
         }
-        $elastic_buffer[] = '{ "delete" : { "_type" : "'.$hit->doc->type.'", "_id" : "'.$hit->id.'" } }'."\n";
+        $elastic_buffer[] = '{ "delete" : { "_type" : "'.$hit->_type.'", "_id" : "'.$hit->_source->id.'" } }'."\n";
     }
 }
 
