@@ -389,7 +389,7 @@ function updateIndexer($change) {
                 $mvt->cepage = $keys[15];
                 $mvt->id = $change->id."-".$id;
                 if (!isset($mvt->date)) {
-                    $periode = substr_replace('-', '', $change->doc->periode);
+                    $periode = str_replace('-', '', $change->doc->periode);
                     $mvt->date = substr($periode, 0, 4).'-'.substr($periode, 4, 2).'-15';
                 }
                 $drmmvt["doc"]["mouvements"] = $mvt;
