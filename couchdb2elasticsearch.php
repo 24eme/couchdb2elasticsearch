@@ -388,6 +388,12 @@ function updateIndexer($change) {
                 $mvt->couleur = $keys[13];
                 $mvt->cepage = $keys[15];
                 $mvt->id = $change->id."-".$id;
+                $mvt->type_es = 'stock';
+                if (preg_match('/^entree/', $mvt->type_hash)) {
+                    $mvt->type_es = 'entree';
+                }elseif (preg_match('/^sortie/', $mvt->type_hash)) {
+                    $mvt->type_es = 'sortie';
+                }
                 if (!isset($mvt->date)) {
                     $periode = str_replace('-', '', $change->doc->periode);
                     $mvt->date = substr($periode, 0, 4).'-'.substr($periode, 4, 2).'-15';
