@@ -391,7 +391,7 @@ function updateIndexer($change) {
                 $mvt->type_es = 'stock';
                 if (preg_match('/^entree/', $mvt->type_hash)) {
                     $mvt->type_es = 'entree';
-                }elseif (preg_match('/^sortie/', $mvt->type_hash)) {
+                }elseif (preg_match('/^(sortie|vrac_details|vrac_details|export_details)/', $mvt->type_hash)) {
                     $mvt->type_es = 'sortie';
                 }
                 if (!isset($mvt->date)) {
