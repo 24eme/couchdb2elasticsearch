@@ -394,7 +394,7 @@ function updateIndexer($change) {
                 }elseif (preg_match('/^(sortie|vrac_details|export_details)/', $mvt->type_hash)) {
                     $mvt->type_es = 'sortie';
                 }
-                $drmmvt["doc"]["identifiant"] => $tiers;
+                $drmmvt["doc"]["identifiant"] = $tiers;
                 if (!isset($mvt->date)) {
                     $periode = str_replace('-', '', $change->doc->periode);
                     $mvt->date = substr($periode, 0, 4).'-'.substr($periode, 4, 2).'-15';
