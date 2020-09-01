@@ -390,6 +390,8 @@ function updateIndexer($change) {
                 $mvt->cepage = $keys[15];
                 $mvt->id = $change->id."-".$id;
                 $mvt->type_es = 'stock';
+                $mvt->identifiant = $tiers;
+                $drmmvt["doc"]["identifiant"] = $tiers;
                 if (preg_match('/^entree/', $mvt->type_hash)) {
                     $mvt->type_es = 'entree';
                 }elseif (preg_match('/^sortie/', $mvt->type_hash)) {
@@ -403,6 +405,7 @@ function updateIndexer($change) {
                 emit($change->id."-".$id, $drmmvt, "DRMMVT", $change->id);
             }
         }
+        $drmmvt["doc"]["identifiant"] = $change->doc->identifiant;
         $mvt = array();
         if (isset($change->doc->region)) {
             $mvt['region'] = $change->doc->region;
