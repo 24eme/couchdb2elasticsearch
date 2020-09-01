@@ -357,6 +357,7 @@ function updateIndexer($change) {
         $change->doc->cepage = $keys[15];
     }
     if ($change->doc->type == "DRM") {
+        deleteIndexer($change);
         unset($change->doc->favoris);
         $mouvements = array();
         $drmmvt = array("doc" => array("type" => "DRMMVT", "campagne" => $change->doc->campagne,
