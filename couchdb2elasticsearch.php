@@ -362,7 +362,7 @@ function updateIndexer($change) {
         $mouvements = array();
         $drmmvt = array("doc" => array("type" => "DRMMVT", "campagne" => $change->doc->campagne,
                         "periode" => $change->doc->periode,  "version" => $change->doc->version,
-                        "declarant" => $change->doc->declarant, "identifiant" => $change->doc->identifiant,
+                        "declarant" => $change->doc->declarant,
                         "mode_de_saisie" => $change->doc->mode_de_saisie, "valide" => $change->doc->valide,
                         "mouvements" => null, "drmid" => $change->doc->_id));
         if (isset($change->doc->region)) {
@@ -394,9 +394,10 @@ function updateIndexer($change) {
                 $drmmvt["doc"]["identifiant"] = $tiers;
                 if (preg_match('/^entree/', $mvt->type_hash)) {
                     $mvt->type_es = 'entree';
-                }elseif (preg_match('/^sortie/', $mvt->type_hash)) {
+                }elseif (preg_match('/^(sortie|vrac_details|export_details)/', $mvt->type_hash)) {
                     $mvt->type_es = 'sortie';
                 }
+                $drmmvt["doc"]["identifiant"] = $tiers;
                 if (!isset($mvt->date)) {
                     $periode = str_replace('-', '', $change->doc->periode);
                     $mvt->date = substr($periode, 0, 4).'-'.substr($periode, 4, 2).'-15';
