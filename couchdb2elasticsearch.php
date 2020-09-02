@@ -287,9 +287,12 @@ function updateIndexer($change) {
             $mouvements = array();
             foreach($change->doc->mouvements as $tiers => $t_mouvements) {
                 foreach($t_mouvements as $id => $mvt) {
-                    $mvt->tiers = $tiers;
-                    $mvt->id = $id;
-                    $mouvements[] = $mvt;
+                    if ($mvt) {
+                        $mvt->tiers = $tiers;
+                        $mvt->id = $id;
+                        $mvt->identifiant = $tiers;
+                        $mouvements[] = $mvt;
+                    }
                 }
             }
             $change->doc->mouvements = $mouvements;
@@ -391,6 +394,8 @@ function updateIndexer($change) {
                 $mvt->id = $change->id."-".$id;
                 $mvt->type_es = 'stock';
                 $mvt->identifiant = $tiers;
+                $mvt->tiers = $tiers;
+                $mvt->id = $id;
                 $drmmvt["doc"]["identifiant"] = $tiers;
                 if (preg_match('/^entree/', $mvt->type_hash)) {
                     $mvt->type_es = 'entree';
