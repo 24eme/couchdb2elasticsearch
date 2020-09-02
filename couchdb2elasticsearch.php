@@ -362,7 +362,7 @@ function updateIndexer($change) {
         $mouvements = array();
         $drmmvt = array("doc" => array("type" => "DRMMVT", "campagne" => $change->doc->campagne,
                         "periode" => $change->doc->periode,  "version" => $change->doc->version,
-                        "declarant" => $change->doc->declarant,
+                        "declarant" => $change->doc->declarant, "identifiant" => $change->doc->identifiant,
                         "mode_de_saisie" => $change->doc->mode_de_saisie, "valide" => $change->doc->valide,
                         "mouvements" => null, "drmid" => $change->doc->_id));
         if (isset($change->doc->region)) {
