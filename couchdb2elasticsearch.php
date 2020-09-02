@@ -268,7 +268,7 @@ function updateIndexer($change) {
             $change->doc->{$type} = $types;
         }
     }
-    if ($change->doc->type == "SV12") {
+    if ($change->doc->type == "DR" || $change->doc->type == "SV11" || $change->doc->type == "SV12") {
         if (isset($change->doc->contrats)) {
             $contrats = array();
             foreach($change->doc->contrats as $k => $c) {
@@ -594,19 +594,6 @@ function updateIndexer($change) {
             $change->doc->mouvements = $mouvements;
         }
         $change->doc->declaration = $declaration;
-    }
-    if ($change->doc->type == "DR" || $change->doc->type == "SV11" || $change->doc->type == "SV12") {
-        if (isset($change->doc->mouvements)) {
-            $mouvements = array();
-            foreach($change->doc->mouvements as $tkey => $tiers) {
-                foreach($tiers as $mkey => $mvt) {
-                    $mvt->mouvement_key = $mkey;
-                    $mvt->tiers_key = $tkey;
-                    $mouvements[] = $mvt;
-                }
-            }
-            $change->doc->mouvements = $mouvements;
-        }
     }
     if ($change->doc->type == "Abonnement") {
         if (isset($change->doc->mouvements)) {
