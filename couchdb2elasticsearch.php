@@ -225,6 +225,7 @@ function deleteIndexer($change) {
             if ($verbose) echo "deleteIndexer (1) : ".$change->id." source does not match (".$hit->_source->source.")\n";
             continue;
         }
+        if ($verbose) echo "deleteIndexer (1) : ".$hit->_source->id." (".$hit->_type.")\n";
         $elastic_buffer[] = '{ "delete" : { "_type" : "'.$hit->_type.'", "_id" : "'.$hit->_source->id.'" } }'."\n";
     }
 }
