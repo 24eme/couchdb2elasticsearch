@@ -207,7 +207,7 @@ function deleteIndexer($change) {
     }
     if ($verbose) echo "deleteIndexer (1) : ".$change->id."\n";
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $elastic_url_db."/_search?q=source:".urlencode($change->id));
+    curl_setopt($ch, CURLOPT_URL, $elastic_url_db."/_search?size=10000&q=source:".urlencode($change->id));
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $result = curl_exec($ch);
     $json = json_decode($result);
