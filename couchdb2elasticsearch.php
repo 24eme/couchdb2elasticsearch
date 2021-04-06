@@ -49,7 +49,7 @@ while(1) {
     while($changes && ($l = fgets($changes))) {
         if(!str_replace("\n", "", $l)) {
             if ($verbose) echo "Empty response\n";
-            continue;
+            break;
         }
         //Decode le json fourni par couchdb
         $change = json_decode($l);
