@@ -427,7 +427,7 @@ function updateIndexer($change) {
                         foreach($m->lieux as $kl => $l) {
                             foreach($l->couleurs as $kcoul => $coul) {
                                 foreach($coul->cepages as $kcep => $cep) {
-                                    $produit_hash = '/declaration/certifications/'.$kc.'/genres/'.$kg.'/appellations/'.$ka.'/mentions/'.$km.'/lieux/'.$kl.'/couleurs/'.$kcoul.'/cepages\/'.$kcep;
+                                    $produit_hash = '/declaration/certifications/'.$kc.'/genres/'.$kg.'/appellations/'.$ka.'/mentions/'.$km.'/lieux/'.$kl.'/couleurs/'.$kcoul.'/cepages/'.$kcep;
                                     if (!isset($cep->details)) {
                                         continue;
                                     }
