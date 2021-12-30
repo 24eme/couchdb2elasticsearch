@@ -8,7 +8,11 @@ ls seqs/* | while read seq_file ; do
 	config_file=$(grep -l $seq_file config*)
 	couchdb=$(grep couchdb $config_file | sed 's/.*= *"//' | sed 's/".*//' )
 	seq_couchdb=$(curl -s $couchdb | sed 's/.*update_seq":"*//' | sed 's/["}].*//' | sed 's/-.*//' | sed 's/{/10000000000/')
-	echo -n $seq_file" : "$(echo "0"$( cat $seq_file | sed 's/-.*/ /')" * 100 / "$seq_couchdb | bc)"% "
+    if test "$seq_couchdb" -gt 0;  then
+         echo -n $seq_file" : "$(echo "0"$( cat $seq_file | sed 's/-.*/ /')" * 100 / "$seq_couchdb | bc)"% "
+    else
+         echo -n $seq_file' : 0%'
+    fi
 	if test "$DEBUG"; then
   		echo -n " [ "$( cat $seq_file )" / "$seq_couchdb" ] ";
 	fi
