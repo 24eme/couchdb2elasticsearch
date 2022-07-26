@@ -2507,6 +2507,10 @@
                     "type": "string",
                     "index": "not_analyzed"
                   },
+                  "documents": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                  },
                   "export": {
                     "type": "string",
                     "index": "not_analyzed"
