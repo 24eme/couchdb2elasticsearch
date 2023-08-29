@@ -344,7 +344,7 @@ function updateIndexer($change) {
         }
         $change->doc->mouvements = $mouvements;
     }
-    if ($change->doc->type == "Vrac") {
+    if ($change->doc->type == "Vrac" && isset($change->doc->produit)) {
         $keys = explode('/', $change->doc->produit);
         if (!count($keys)) {
             echo "ERROR : no product keys found : ";
