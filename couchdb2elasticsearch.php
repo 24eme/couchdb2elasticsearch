@@ -382,6 +382,9 @@ function updateIndexer($change) {
             $drmmvt["numero_archive"]  = $change->doc->numero_archive;
         }
         foreach($change->doc->mouvements as $tiers => $t_mouvements) {
+	    if($change->doc->identifiant != $tiers) {
+		continue;
+	    }
             foreach($t_mouvements as $id => $mvt) {
                 $mouvements[] = $mvt;
                 $keys = explode('/', $mvt->produit_hash);
