@@ -383,6 +383,10 @@ function updateIndexer($change) {
         }
         foreach($change->doc->mouvements as $tiers => $t_mouvements) {
             foreach($t_mouvements as $id => $mvt) {
+                if (!$mvt->produit_hash) {
+                    echo "WARNING: mouvement sans produit ".$change->doc->_id."\n";
+                    continue;
+                }
                 $mouvements[] = $mvt;
                 $keys = explode('/', $mvt->produit_hash);
                 $mvt->certification = $keys[3];
