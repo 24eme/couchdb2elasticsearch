@@ -637,6 +637,10 @@
          "properties" : {
             "doc" : {
                "properties" : {
+                 "interpros" : {
+                   "index" : "not_analyzed",
+                   "type" : "string"
+                  },
                   "numero_adherent" : {
                      "index" : "not_analyzed",
                      "type" : "string"
@@ -2595,6 +2599,10 @@
          "properties" : {
             "doc" : {
                "properties" : {
+                 "interpros" : {
+                   "index" : "not_analyzed",
+                   "type" : "string"
+                  },
                   "jus_quantite" : {
                      "type" : "double"
                   },
