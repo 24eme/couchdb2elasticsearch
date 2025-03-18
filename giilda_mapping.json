@@ -637,6 +637,10 @@
          "properties" : {
             "doc" : {
                "properties" : {
+                 "interpros" : {
+                   "index" : "not_analyzed",
+                   "type" : "string"
+                  },
                   "numero_adherent" : {
                      "index" : "not_analyzed",
                      "type" : "string"
@@ -1339,7 +1343,8 @@
                   },
                   "commentaire" : {
                      "type" : "string",
-                     "index" : "not_analyzed"
+                     "index" : "not_analyzed",
+		     "ignore_above": 256
                   },
                   "teledeclare" : {
                      "type" : "boolean"
@@ -1666,6 +1671,14 @@
                         }
                      }
                   },
+		  "exploitant": {
+			"properties" : {
+				"date_naissance": {
+					"type" : "string",
+					"index" : "not_analyzed"
+				}
+			}
+		  },
                   "liaisons_operateurs" : {
                      "properties" : {
                         "cvi" : {
@@ -2586,6 +2599,10 @@
          "properties" : {
             "doc" : {
                "properties" : {
+                 "interpros" : {
+                   "index" : "not_analyzed",
+                   "type" : "string"
+                  },
                   "jus_quantite" : {
                      "type" : "double"
                   },
@@ -2732,6 +2749,10 @@
                         "date_signature_acheteur" : {
                            "format" : "strict_date_optional_time||epoch_millis",
                            "type" : "date"
+                        },
+			"email_cloture" : {
+                           "index" : "not_analyzed",
+                           "type" : "string"
                         }
                      }
                   },
@@ -3116,6 +3137,14 @@
                      "index" : "not_analyzed",
                      "type" : "string"
                   },
+		  "historique": {
+			"properties": {
+				"date": {
+                     			"type" : "string",
+					"index" : "not_analyzed"
+				}
+			}
+		  },
                   "_rev" : {
                      "index" : "not_analyzed",
                      "type" : "string"
@@ -3183,8 +3212,8 @@
                            "index" : "not_analyzed"
                         },
                         "date" : {
-                           "type" : "date",
-                           "format" : "strict_date_optional_time||epoch_millis"
+                           "type" : "string",
+                           "index" : "not_analyzed"
                         },
                         "auteur" : {
                            "type" : "string",
@@ -3207,7 +3236,8 @@
                                        "index" : "not_analyzed"
                                     },
                                     "commentaire" : {
-                                       "type" : "string"
+                                       "type" : "string",
+				       "index" : "not_analyzed"
                                     },
                                     "date" : {
                                        "type" : "date",
@@ -3226,14 +3256,16 @@
                                        "type" : "string"
                                     },
                                     "commentaire" : {
-                                       "type" : "string"
+                                       "type" : "string",
+				       "index" : "not_analyzed"
                                     }
                                  }
                               },
                               "VENTE_A_LA_TIREUSE" : {
                                  "properties" : {
                                     "commentaire" : {
-                                       "type" : "string"
+                                       "type" : "string",
+				       "index" : "not_analyzed"
                                     },
                                     "statut" : {
                                        "type" : "string",
@@ -3252,7 +3284,8 @@
                                        "type" : "string"
                                     },
                                     "commentaire" : {
-                                       "type" : "string"
+                                       "type" : "string",
+				       "index" : "not_analyzed"
                                     },
                                     "date" : {
                                        "type" : "date",
@@ -3267,7 +3300,8 @@
                                        "format" : "strict_date_optional_time||epoch_millis"
                                     },
                                     "commentaire" : {
-                                       "type" : "string"
+                                       "type" : "string",
+				       "index" : "not_analyzed"
                                     },
                                     "statut" : {
                                        "type" : "string",
@@ -3286,7 +3320,8 @@
                                        "type" : "string"
                                     },
                                     "commentaire" : {
-                                       "type" : "string"
+                                       "type" : "string",
+				       "index" : "not_analyzed"
                                     }
                                  }
                               },
@@ -3300,7 +3335,8 @@
                                        "format" : "strict_date_optional_time||epoch_millis"
                                     },
                                     "commentaire" : {
-                                       "type" : "string"
+                                       "type" : "string",
+				       "index" : "not_analyzed"
                                     },
                                     "statut" : {
                                        "index" : "not_analyzed",
@@ -3350,7 +3386,8 @@
                            "type" : "string"
                         },
                         "commentaire" : {
-                           "type" : "string"
+                           "type" : "string",
+			   "index" : "not_analyzed"
                         },
                         "produit_libelle" : {
                            "index" : "not_analyzed",
