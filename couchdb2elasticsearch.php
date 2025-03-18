@@ -34,6 +34,11 @@ $NO_ACTIVITY_LIMIT = 330; // on arrête au bout de 2min45 => 165 => 330 commits
 $error_nb = 0;
 readSeqFile();
 
+// @var $docs_to_index défini dans le fichier de config
+$allowlist = (isset($docs_to_index) && is_array($docs_to_index) && empty($docs_to_index) !== false)
+           ? true
+           : false;
+
 while(1) {
 
     $url = $couchdb_url_db.'/_changes?feed=continuous&include_docs=true&timeout='.$COMMIT_TIME_MS.'&limit='.intval($COMMITER * 3.5);
@@ -231,7 +236,7 @@ function deleteIndexer($change) {
 }
 
 function updateIndexer($change) {
-    global $verbose, $doc_type_exclusion;
+    global $verbose, $doc_type_exclusion, $docs_to_index, $allowlist;
     if ($verbose) echo "updateIndexer (1) : ".$change->id."\n";
     if (!isset($change->doc->type)) {
         echo "ERROR: no type for : ";
@@ -239,9 +244,17 @@ function updateIndexer($change) {
         echo "\n";
         return ;
     }
-    if (is_array($doc_type_exclusion) && in_array($change->doc->type, $doc_type_exclusion)) {
-	return;
+
+    if ($allowlist) {
+        if (in_array($change->doc->type, $docs_to_index) === false) {
+            return;
+        }
+    } else {
+        if (is_array($doc_type_exclusion) && in_array($change->doc->type, $doc_type_exclusion)) {
+            return;
+        }
     }
+
     if ($change->doc->type == "Configuration") {
         return ;
     }
