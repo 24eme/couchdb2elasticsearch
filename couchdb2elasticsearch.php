@@ -35,7 +35,7 @@ $error_nb = 0;
 readSeqFile();
 
 // @var $docs_to_index défini dans le fichier de config
-$allowlist = (isset($docs_to_index) && is_array($docs_to_index) && empty($docs_to_index) !== false)
+$allowlist = (isset($docs_to_index) && is_array($docs_to_index) && empty($docs_to_index) === false)
            ? true
            : false;
 
