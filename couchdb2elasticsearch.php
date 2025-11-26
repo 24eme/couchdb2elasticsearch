@@ -72,6 +72,12 @@ while(1) {
         $cpt++;
         $noactivity = 0;
 
+        if (isset($change->doc) && isset($change->doc->chais)) {
+            foreach($change->doc->chais as $c) {
+                $c->archive = $c->archive * 1;
+            }
+        }
+
         $last_seq = $change->seq;
         if (isset($change->deleted)) {
             //Suppression si le doc a été supprimé par couchdb
