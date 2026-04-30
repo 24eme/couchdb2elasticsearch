@@ -77,7 +77,7 @@ while(1) {
         $cpt++;
         $noactivity = 0;
 
-        if (isset($change->doc) && isset($change->doc->chais)) {
+        if (isset($change->doc) && isset($change->doc->chais) && is_array($change->doc->chais)) {
             foreach($change->doc->chais as $c) {
                 if (!$c) {
                     $c = new \stdClass();
