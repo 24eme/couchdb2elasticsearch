@@ -79,6 +79,12 @@ while(1) {
 
         if (isset($change->doc) && isset($change->doc->chais)) {
             foreach($change->doc->chais as $c) {
+                if (!$c) {
+                    $c = new \stdClass();
+                }
+                if (!isset($c->archive)) {
+                    $c->archive = 0;
+                }
                 $c->archive = $c->archive * 1;
             }
         }
