@@ -340,6 +340,10 @@ function updateIndexer($change) {
             }
             $change->doc->liaisons_operateurs = $liaisons;
         }
+        if (isset($change->doc->societe)) {
+                $change->doc->societe_id = $change->doc->societe;
+                unset($change->doc->societe);
+        }
     }
     if ($change->doc->type == "Societe") {
         $contacts = array();
