@@ -12,7 +12,10 @@ if (isset($argv[2])) {
     $verbose = 1;
 }
 $config_file = $argv[1];
+
+$index_drmmvt_from_owner_only = false;
 include($config_file);
+
 $lock_file_path = "/tmp/couchdb2elasticsearch_".$config_file.".lock";
 
 if (!isset($couchdb_url_db) || !isset($elastic_url_db) || !isset($seq_file_path) || !isset($COMMITER) ){
@@ -411,9 +414,9 @@ function updateIndexer($change) {
             $drmmvt["numero_archive"]  = $change->doc->numero_archive;
         }
         foreach($change->doc->mouvements as $tiers => $t_mouvements) {
-	    if($change->doc->identifiant != $tiers) {
-		continue;
-	    }
+            if($index_drmmvt_from_owner_only && $change->doc->identifiant != $tiers) {
+                continue;
+            }
             foreach($t_mouvements as $id => $mvt) {
                 if (!$mvt->produit_hash) {
                     echo "WARNING: mouvement sans produit ".$change->doc->_id."\n";
