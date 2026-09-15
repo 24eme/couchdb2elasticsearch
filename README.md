@@ -1,7 +1,7 @@
 Pour recréer la base elastic search pour l'exemple region_prod.
-Aller sur http://x.x.x.x:9200
+Aller sur http://x.x.x.x:9200 et supprimer la base d'elasticsearch region_prod
 
-supprimer la base d'elasticsearch region_prod :
+Puis aller dans le répertoire du projet pour supprimer le fichier seq :
 
     cd couchdb2elasticsearch
     rm seqs/region_prod.seq
